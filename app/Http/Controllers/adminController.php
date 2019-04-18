@@ -23,4 +23,17 @@ class adminController extends Controller
         return view('admin.pegawai_edit');
     }
 
+    //jabatan
+    public function jabatan_index(){
+
+        return view('admin.jabatan_data');
+    }
+
+    //provinsi
+      public function provinsi_index(){
+
+        return view('admin.provinsi_data');
+    }
+
+
 }

@@ -54,10 +54,33 @@
           <span>Beranda</span></a>
       </li>
       <li class="nav-item">
-            <a class="nav-link" href="">
-            <i class="fas fa-map-marked-alt"></i>
-              <span>Data Pegawai</span></a>
-          </li>
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+          <i class="fas fa-fw fa-cog"></i>
+          <span>Master Data</span>
+        </a>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Master Data:</h6>
+            <a class="collapse-item" href="{{route('jabatan_index')}}">Data Jabatan</a>
+            <a class="collapse-item" href="{{route('pegawai_index')}}">Data Pegawai</a>
+            <a class="collapse-item" href="cards.html">Data Anggaran</a>
+          </div>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseTwo">
+          <i class="fas fa-fw fa-cog"></i>
+          <span>Data Lokasi</span>
+        </a>
+        <div id="collapseThree" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Rincian:</h6>
+          <a class="collapse-item" href="{{route('provinsi_data')}}">Data Provinsi</a>
+            <a class="collapse-item" href="">Data Kecamatan</a>
+            <a class="collapse-item" href="cards.html">Data Kelurahan</a>
+          </div>
+        </div>
+      </li>
           <li class="nav-item">
                 <a class="nav-link" href="">
                  <i class="fas fa-list-ul"></i>

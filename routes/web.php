@@ -20,3 +20,10 @@ Route::get('/admin','adminController@index')->name('dashboard');
 //pegawai
 Route::get('/pegawai','adminController@pegawai_index')->name('pegawai_index');
 Route::get('/pegawai_edit','adminController@pegawai_edit')->name('pegawai_edit');
+
+//Jabatan
+Route::get('/jabatan','adminController@jabatan_index')->name('jabatan_index');
+
+//provinsi
+Route::get('/provinsi','adminController@provinsi_index')->name('provinsi_index');
+

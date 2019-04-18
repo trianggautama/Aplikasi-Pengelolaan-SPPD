@@ -13,7 +13,7 @@
                 <!-- DataTales Example -->
                 <div class="card shadow mb-4">
                   <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Data Lokasi Parkir</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Data Jabatan</h6>
                   </div>
                   <div class="card-body">
                     <div class="table-responsive">
@@ -21,9 +21,8 @@
                         <thead>
                           <tr>
                             <th>No</th>
-                            <th>Kode Zona</th>
-                            <th>Keterangan</th>
-                            <th>Jabatan</th>
+                            <th>Kode jabatan</th>
+                            <th>Nama Jabatan</th>
                             <th>Action</th>
                           </tr>
                         </thead>
@@ -33,21 +32,19 @@
                         <tfoot>
                           <tr>
                             <th>No</th>
-                            <th>NIP</th>
-                            <th>Nama</th>
-                            <th>Jabatan</th>
+                            <th>Kode jabatan</th>
+                            <th>Nama Jabatan</th>
                             <th>Action</th>
                           </tr>
                         </tfoot>
                         <tbody>
                                 <tr>
                                 <td>1</td>
-                                <td>1765 3213 02 1</td>
-                                <td>Abdul Azis</td>
+                                <td>1765 </td>
                                 <td>Kepala Seksi Perencanaan Keuangan</td>
                                     <td class="text-center">
                                         <a href="" class="btn btn-sm btn-primary " >Info</a>
-                                    <a href="{{route('pegawai_edit')}}" class="btn btn-sm btn-info " >Edit</a>
+                                    <a href="" class="btn btn-sm btn-info " >Edit</a>
                                         <a href="" class="btn btn-sm btn-danger" >Hapus</a>
 
                                     </td>
@@ -74,21 +71,14 @@
           <form  method="post" action="">
 
             <div class="form-group">
-              <input type="text" name=""  class="form-control" placeholder="NIP"/>
+              <input type="text" name=""  class="form-control" placeholder="Kode Jabatan"/>
             </div>
             <div class="form-group">
-                <input type="text" name=""  class="form-control" placeholder="Nama"/>
+                <input type="text" name=""  class="form-control" placeholder="Nama Jabatan"/>
             </div>
-
-            <div class="form-group">
-                <p>Jabatan</p>
-                <select class="form-control" name="jukir_id">
-                    <option value="">isi jabatannya </option>
-                </select>
-             </div>
             <div class="form-group">
              <div class="text-right">
-               <input class="btn btn-primary" type="submit" name="submit" value="Submit">
+               <input class="btn btn-primary" type="submit" name="submit" value="Simpan">
                {{csrf_field() }}
              </div>
            </div>

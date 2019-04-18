@@ -30,10 +30,10 @@
 
                                 <div class="form-group">
                                     <p>Jabatan</p>
-                                        <select class="form-control" name="jukir_id">
-                                          <option value="">isi jabatannya </option>
-                                        </select>
-                      </div>
+                                    <select class="form-control" name="jukir_id">
+                                        <option value="">isi jabatannya </option>
+                                    </select>
+                                 </div>
                                 <div class="form-group row mb-0">
                                     <div class="col-md text-right">
                                         <button type="submit" class="btn  btn-primary">
