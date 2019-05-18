@@ -75,7 +75,7 @@
         <div id="collapseThree" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Rincian:</h6>
-          <a class="collapse-item" href="{{route('provinsi_data')}}">Data Provinsi</a>
+          <a class="collapse-item" href="{{route('provinsi_index')}}">Data Provinsi</a>
             <a class="collapse-item" href="">Data Kecamatan</a>
             <a class="collapse-item" href="cards.html">Data Kelurahan</a>
           </div>
@@ -146,20 +146,33 @@
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small"> </span>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small"> {{ Auth::user()->name }}</span>
                 <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="">
-                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                <a class="dropdown-item" href="{{ route('logout') }}"
+                  onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();">
+                {{-- <i class="mdi mdi-logout text-primary"></i> --}}
+                {{-- Logout --}}
+                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"> Logout</i>
 
              </a>
+             {{-- <a class="dropdown-item" href="{{ route('logout') }}">
+              onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();">
+                <i class="mdi mdi-logout text-primary"></i>
+                Logout
+              </a> --}}
+              <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+              </form>
 
-             <form id="logout-form" action="" method="POST" style="display: none;">
+             {{-- <form id="logout-form" action="" method="POST" style="display: none;">
                  @csrf
-             </form>
+             </form> --}}
               </div>
             </li>
 

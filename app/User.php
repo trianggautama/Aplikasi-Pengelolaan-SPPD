@@ -36,4 +36,11 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // // check auth login
+    // public function isAdmin() {
+    //     if(Auth::check()) return true;
+
+    //     return false;
+    // }    
 }
