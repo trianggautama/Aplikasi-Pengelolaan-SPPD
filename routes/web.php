@@ -45,6 +45,18 @@ Route::put('/jabatan/edit/{id}','adminController@jabatan_update')
 Route::get('/jabatan/hapus/{id}','adminController@jabatan_hapus')
 ->name('jabatan_hapus');
 
+//Anggaran
+Route::get('/anggaran','adminController@anggaran_index')
+->name('anggaran_index');
+Route::post('/anggaran','adminController@anggaran_tambah')
+->name('anggaran_tambah');
+Route::get('/anggaran/edit/{id}','adminController@anggaran_edit')
+->name('anggaran_edit');
+Route::put('/anggaran/edit/{id}','adminController@anggaran_update')
+->name('anggaran_update');
+Route::get('/anggaran/hapus/{id}','adminController@anggaran_hapus')
+->name('anggaran_hapus');
+
 //provinsi
 Route::get('/provinsi','adminController@provinsi_index')->name('provinsi_index');
 // });

@@ -6,6 +6,7 @@ use IDCrypt;
 Use App\User;
 Use App\Jabatan;
 Use App\Karyawan;
+Use App\Anggaran;
 use Illuminate\Http\Request;
 
 class adminController extends Controller
@@ -68,11 +69,9 @@ class adminController extends Controller
         return redirect(route('pegawai_index'))->with('success', 'Data Karyawan '.$request->nama.' Berhasil di ubah');
     } 
 
-    public function pagawai_hapus($id){
+    public function pegawai_hapus($id){
         $id = IDCrypt::Decrypt($id);
         $Karyawan=Karyawan::findOrFail($id);
-        // File::delete('images/rambu/'.$rambu->gambar);
-        // $rambu->lokasi_rambu()->delete();
         $Karyawan->delete();
        
         return redirect(route('jabatan_index'))->with('success', 'Data jabatan Berhasil di hapus');
@@ -131,6 +130,62 @@ class adminController extends Controller
         return redirect(route('jabatan_index'))->with('success', 'Data jabatan Berhasil di hapus');
     }//fungsi menghapus data jabatan
 
+    //Anggaran
+    public function anggaran_index(){
+        $Anggaran = Anggaran::all();
+        return view('admin.anggaran_data',compact('Anggaran'));
+    }
+
+    public function anggaran_tambah(Request $request){
+
+        $this->validate(request(),[
+            'pembebanan'=>'required',
+            'akun'=>'required',
+            'tahun'=>'required'
+            
+        ]);
+    
+        $Anggaran = new Anggaran;
+
+        $Anggaran->pembebanan   = $request->pembebanan;
+        $Anggaran->akun         = $request->akun;
+        $Anggaran->tahun        = $request->tahun;
+        $Anggaran->save();
+           
+        return redirect(route('anggaran_index'))->with('success', 'Data anggaran '.$request->anggaran.' Berhasil di Tambahkan');
+    }//fungsi menambahkan data anggaran
+
+    public function anggaran_edit($id){
+        $id = IDCrypt::Decrypt($id);
+        $Anggaran = Anggaran::findOrFail($id);
+        return view('admin.anggaran_edit',['Anggaran' => $Anggaran]);
+    }
+
+    public function anggaran_update(Request $request, $id){
+        $id = IDCrypt::Decrypt($id);
+        $Anggaran = Anggaran::findOrFail($id);
+
+         $this->validate(request(),[
+            'pembebanan'=>'required',
+            'akun'=>'required',
+            'tahun'=>'required'
+        ]);
+
+        $Anggaran->pembebanan   = $request->pembebanan;
+        $Anggaran->akun         = $request->akun;
+        $Anggaran->tahun        = $request->tahun;
+        $Anggaran->update();
+        return redirect(route('anggaran_index'))->with('success', 'Data Anggaran '.$request->anggaran.' Berhasil di ubah');
+    } 
+
+    public function anggaran_hapus($id){
+        $id = IDCrypt::Decrypt($id);
+        $Anggaran=Anggaran::findOrFail($id);
+        $Anggaran->delete();
+       
+        return redirect(route('anggaran_index'))->with('success', 'Data Anggaran Berhasil di hapus');
+    }//fungsi menghapus data anggaran
+    
     //provinsi
       public function provinsi_index(){
 

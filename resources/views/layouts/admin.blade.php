@@ -63,7 +63,7 @@
             <h6 class="collapse-header">Master Data:</h6>
             <a class="collapse-item" href="{{route('jabatan_index')}}">Data Jabatan</a>
             <a class="collapse-item" href="{{route('pegawai_index')}}">Data Pegawai</a>
-            <a class="collapse-item" href="cards.html">Data Anggaran</a>
+            <a class="collapse-item" href="{{route('anggaran_index')}}">Data Anggaran</a>
           </div>
         </div>
       </li>
