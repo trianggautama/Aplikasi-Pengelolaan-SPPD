@@ -47,7 +47,8 @@ class adminController extends Controller
     public function pegawai_edit($id){
         $id = IDCrypt::Decrypt($id);
         $Karyawan = Karyawan::findOrFail($id);
-        return view('admin.pegawai_edit',['Karyawan' => $Karyawan]);
+        $Jabatan = Jabatan::all();
+        return view('admin.pegawai_edit',compact('Jabatan','Karyawan'));
     }
 
     public function pegawai_update(Request $request, $id){
@@ -55,14 +56,16 @@ class adminController extends Controller
         $Karyawan = Karyawan::findOrFail($id);
 
          $this->validate(request(),[
-            'kode_jabatan'=>'required',
-            'jabatan'=>'required'
+            'nip'=>'required',
+            'nama'=>'required',
+            'id_jabatan'=>'required'
         ]);
 
-        $Karyawan->kode_jabatan = $request->kode_jabatan;
-        $Karyawan->jabatan = $request->jabatan;
+        $Karyawan->id_jabatan   = $request->id_jabatan;
+        $Karyawan->nip = $request->nip;
+        $Karyawan->nama = $request->nama;
         $Karyawan->update();
-        return redirect(route('jabatan_index'))->with('success', 'Data Karyawan '.$request->jabatan.' Berhasil di ubah');
+        return redirect(route('pegawai_index'))->with('success', 'Data Karyawan '.$request->nama.' Berhasil di ubah');
     } 
 
     public function pagawai_hapus($id){
