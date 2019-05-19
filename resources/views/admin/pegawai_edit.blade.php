@@ -15,8 +15,9 @@
               </div>
               <div class="card-body">
                 <div class="col-md">
-                        <form method="POST" action="">
-                                @csrf
+                    <form class="form-horizontal"  method="post" action="">
+                            {{method_field('PUT') }}
+                            {{ csrf_field() }}
                                 <div class="form-group row">
                                     <div class="col-md">
                                         <input id="nip" type="text" class="form-control" name="nip" value="{{$Karyawan->nip}}" required autofocus>
@@ -27,19 +28,12 @@
                                         <input id="nama" type="text" class="form-control" name="nama" value="{{$Karyawan->nama}}" required autofocus>
                                     </div>
                                 </div>
-                                {{-- <div class="form-group">
-                                  <p>Jabatan</p>
-                                  <select class="form-control" name="id_jabatan">
-                                    @foreach($Karyawan as $p)
-                                    <option value="{{ $p->id_jabatan }}">{{ $p->jabatan->jabatan}}</option>
-                                    @endforeach
-                                  </select>
-                               </div> --}}
-
                                 <div class="form-group">
                                     <p>Jabatan</p>
                                     <select class="form-control" name="id_jabatan">
-                                        <option value="{{$Karyawan->id_jabatan}}">isi jabatannya </option>
+                                        @foreach ($Jabatan as $j)
+                                        <option value="{{ $j->id}}" {{$Karyawan->id_jabatan == $j->id ? 'selected' : ''}}>{{$j->jabatan}}</option>
+                                        @endforeach
                                     </select>
                                  </div>
                                 <div class="form-group row mb-0">
@@ -47,6 +41,7 @@
                                         <button type="submit" class="btn  btn-primary">
                                            Ubah Data
                                         </button>
+                                        {{csrf_field() }}
                                     </div>
                                 </div>
                             </form>

@@ -13,7 +13,7 @@
                 <!-- DataTales Example -->
                 <div class="card shadow mb-4">
                   <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Data Provinsi</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Data Anggaran</h6>
                   </div>
                   <div class="card-body">
                     <div class="table-responsive">
@@ -21,43 +21,46 @@
                         <thead>
                           <tr>
                             <th>No</th>
-                            <th>Kode Provinsi</th>
-                            <th>Provinsi</th>
+                            <th>Pembebanan Anggaran</th>
+                            <th>Akun Anggaran</th>
+                            <th>Tahun Anggaran</th>
                             <th>Action</th>
                           </tr>
                         </thead>
                         <tfoot>
                           <tr>
                             <th>No</th>
-                            <th>Kode Provinsi</th>
-                            <th>Provinsi</th>
+                            <th>Pembebanan Anggaran</th>
+                            <th>Akun Anggaran</th>
+                            <th>Tahun Anggaran</th>
                             <th>Action</th>
                           </tr>
                         </tfoot>
                         <tbody>
-                            @foreach($Provinsi as $p)
-                            <tr>
-                                @php
-                                $no=1;
-                                @endphp   
-                            <td>{{ $no++ }}</td>
-                            <td>{{ $p->kode_provinsi }}</td>
-                            <td>{{ $p->provinsi }}</td>
-                                <td class="text-center">
-                                    <a href="" class="btn btn-sm btn-primary " >Info</a>
-                                <a href="{{route('provinsi_edit', ['id' => IDCrypt::Encrypt( $p->id)])}}" class="btn btn-sm btn-info " >Edit</a>
-                                    <a href="{{route('provinsi_hapus', ['id' => IDCrypt::Encrypt( $p->id)])}}" class="btn btn-sm btn-danger" >Hapus</a>
+                        @foreach($Anggaran as $p)
+                                <tr>
+                                    @php
+                                    $no=1;
+                                    @endphp   
+                                <td>{{ $no++ }}</td>
+                                <td>{{ $p->pembebanan }}</td>
+                                <td>{{ $p->akun }}</td>
+                                <td>{{ $p->tahun }}</td>
+                                    <td class="text-center">
+                                        <a href="" class="btn btn-sm btn-primary " >Info</a>
+                                    <a href="{{route('anggaran_edit', ['id' => IDCrypt::Encrypt( $p->id)])}}" class="btn btn-sm btn-info " >Edit</a>
+                                        <a href="{{route('anggaran_hapus', ['id' => IDCrypt::Encrypt( $p->id)])}}" class="btn btn-sm btn-danger" >Hapus</a>
 
-                                </td>
-                            </tr>
-                    @endforeach    
+                                    </td>
+                                </tr>
+                        @endforeach    
                         </tbody>
                       </table>
                     </div>
-                  </div>s
+                  </div>
                 </div>
 
-              </div>s
+              </div>
 <div id="tambahdata" class="modal fade" tabindex="-1" role="dialog" >
     <div class="modal-dialog" role="document" >
       <div class="modal-content">
@@ -73,14 +76,17 @@
           <form  method="post" action="">
 
             <div class="form-group">
-              <input type="text" name="kode_provinsi"  class="form-control" placeholder="Kode Provinsi"/>
+              <input type="text" name="pembebanan"  class="form-control" placeholder="Pembebanan Anggaran"/>
             </div>
             <div class="form-group">
-                <input type="text" name="provinsi"  class="form-control" placeholder="Provinsi"/>
+                <input type="text" name="akun"  class="form-control" placeholder="Akun Anggaran"/>
+            </div>
+            <div class="form-group">
+                <input type="date" name="tahun"  class="form-control" />
             </div>
             <div class="form-group">
              <div class="text-right">
-               <input class="btn btn-primary" type="submit" name="submit" value="Simpan">
+               <input class="btn btn-primary" type="submit" name="submit" value="Submit">
                {{csrf_field() }}
              </div>
            </div>
