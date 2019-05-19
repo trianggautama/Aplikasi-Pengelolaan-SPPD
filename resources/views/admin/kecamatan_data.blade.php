@@ -21,10 +21,11 @@
                         <thead>
                           <tr>
                             <th>No</th>
-                            <th>Kode Provinsi</th>
-                            <th>Nama Provinsi</th>
+                            <th>Kode Kecamatan</th>
+                            <th>Nama Kecamatan</th>
+                            <th>Provinsi</th>
                             <th>Action</th>
-                          </tr>
+                         </tr>
                         </thead>
                         @php
                         $no=1;
@@ -32,8 +33,9 @@
                         <tfoot>
                           <tr>
                             <th>No</th>
-                            <th>Kode Provinsi</th>
-                            <th>Nama Provinsi</th>
+                            <th>Kode Kecamatan</th>
+                            <th>Nama Kecamatan</th>
+                            <th>Provinsi</th>
                             <th>Action</th>
                           </tr>
                         </tfoot>
@@ -41,6 +43,7 @@
                                 <tr>
                                 <td>1</td>
                                 <td>1765 </td>
+                                <td>Banjarbaru Utara</td>
                                 <td>Kalimantan Selatan</td>
                                     <td class="text-center">
                                         <a href="" class="btn btn-sm btn-primary " >Info</a>
@@ -71,11 +74,17 @@
           <form  method="post" action="">
 
             <div class="form-group">
-              <input type="text" name=""  class="form-control" placeholder="Kode Provinsi"/>
+              <input type="text" name=""  class="form-control" placeholder="Kode Kecamatan"/>
             </div>
             <div class="form-group">
-                <input type="text" name=""  class="form-control" placeholder="Nama Provinsi"/>
+                <input type="text" name=""  class="form-control" placeholder="Nama Kecamatan"/>
             </div>
+            <div class="form-group">
+                <p>Provinisi</p>
+                <select class="form-control" name="jukir_id">
+                    <option value="">isi provinsi </option>
+                </select>
+             </div>
             <div class="form-group">
              <div class="text-right">
                <input class="btn btn-primary" type="submit" name="submit" value="Simpan">
