@@ -9,6 +9,7 @@ Use App\Karyawan;
 Use App\Anggaran;
 Use App\Provinsi;
 Use App\Kecamatan;
+Use App\Kabupaten;
 use Illuminate\Http\Request;
 
 class adminController extends Controller
@@ -232,11 +233,70 @@ class adminController extends Controller
        public function provinsi_hapus($id){
         $id = IDCrypt::Decrypt($id);
             $Provinsi=Provinsi::findOrFail($id);
-            $Provinsi->kecamatan()->delete();
+            // $Provinsi->kabupaten()->delete();
+            // $Provinsi->kecamatan()->delete();
+            // $Provinsi->kelurahan()->delete();
             $Provinsi->delete();
             return redirect(route('provinsi_index'))->with('success', 'Data  Berhasil di Hapus');
        
-    }  //menghapus data  kecamatan
+    }  //menghapus data Provinsi
+
+    //kabupaten
+    public function kabupaten_index(){
+        $Provinsi = Provinsi::all();
+        $Kabupaten = Kabupaten::all();
+        return view('admin.kabupaten_data',compact('Kabupaten','Provinsi'));
+    }
+
+    public function kabupaten_tambah(Request $request){
+
+        $this->validate(request(),[
+          'kode_kabupaten'=>'required|unique:kabupatens',
+          'kabupaten'=>'required|unique:kabupatens'
+        ]);
+
+        $Kabupaten = new Kabupaten;
+
+        $Kabupaten->id_provinsi= $request->id_provinsi;
+        $Kabupaten->kode_kabupaten= $request->kode_kabupaten;
+        $Kabupaten->kabupaten= $request->kabupaten;
+        $Kabupaten->save();
+
+          return redirect(route('kabupaten_index'))->with('success', 'Data Kabupaten '.$request->kabupaten.' Berhasil di Tambahkan');
+      }//menambahkan data Kabupaten
+
+      public function kabupaten_edit($id){
+        $id = IDCrypt::Decrypt($id);
+        $Kabupaten = Kabupaten::findOrFail($id);
+        $Provinsi = Provinsi::all();
+
+        return view('admin.kabupaten_edit',compact('Kabupaten','Provinsi'));
+       }//menampikan halaman edit Kabupaten
+
+       public function kabupaten_update(Request $request, $id){
+        $id = IDCrypt::Decrypt($id);
+        $Kabupaten = Kabupaten::findOrFail($id);
+
+        $this->validate(request(),[
+           'kabupaten'=>'required'
+       ]);
+
+        $Kabupaten->kode_kabupaten= $request->kode_kabupaten;
+        $Kabupaten->kabupaten= $request->kabupaten;
+        $Kabupaten->update();
+       return redirect(route('kabupaten_index'))->with('success', 'Data Kabupaten '.$request->kabupaten.' Berhasil di Ubah');
+      }//mengubah data kabupaten
+
+       public function kabupaten_hapus($id){
+        $id = IDCrypt::Decrypt($id);
+            $Kabupaten=Kabupaten::findOrFail($id);
+            // $Kabupaten->kabupaten()->delete();
+            // $Kabupaten->kecamatan()->delete();
+            // $Kabupaten->kelurahan()->delete();
+            $Kabupaten->delete();
+            return redirect(route('kabupaten_index'))->with('success', 'Data  Berhasil di Hapus');
+       
+    }  //menghapus data Kabupaten
 
     //kecamatan
     public function kecamatan_index(){

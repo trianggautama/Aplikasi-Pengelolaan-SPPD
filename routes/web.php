@@ -70,6 +70,19 @@ Route::get('/provinsi/hapus/{id}','adminController@provinsi_hapus')
 ->name('provinsi_hapus');
 // });
 
+//kabupaten
+Route::get('/kabupaten','adminController@kabupaten_index')
+->name('kabupaten_index');
+Route::post('/kabupaten','adminController@kabupaten_tambah')
+->name('kabupaten_tambah');
+Route::get('/kabupaten/edit/{id}','adminController@kabupaten_edit')
+->name('kabupaten_edit');
+Route::put('/kabupaten/edit/{id}','adminController@kabupaten_update')
+->name('kabupaten_update');
+Route::get('/kabupaten/hapus/{id}','adminController@kabupaten_hapus')
+->name('kabupaten_hapus');
+// });
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

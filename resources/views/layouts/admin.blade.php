@@ -76,8 +76,9 @@
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Rincian:</h6>
             <a class="collapse-item" href="{{ route('provinsi_index') }}">Data Provinsi</a>
-            <a class="collapse-item" href="{{ route('kecamatan_index') }}">Data Kecamatan</a>
-            <a class="collapse-item" href="{{ route('kelurahan_index') }}">Data Kelurahan</a>
+            <a class="collapse-item" href="{{ route('kabupaten_index') }}">Data Kabupaten / Kota</a>
+            {{-- <a class="collapse-item" href="{{ route('kecamatan_index') }}">Data Kecamatan</a> --}}
+            {{-- <a class="collapse-item" href="{{ route('kelurahan_index') }}">Data Kelurahan</a> --}}
           </div>
         </div>
       </li>
