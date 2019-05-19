@@ -26,9 +26,6 @@
                             <th>Action</th>
                           </tr>
                         </thead>
-                        @php
-                        $no=1;
-                       @endphp
                         <tfoot>
                           <tr>
                             <th>No</th>
@@ -38,17 +35,22 @@
                           </tr>
                         </tfoot>
                         <tbody>
+                            @foreach($Jabatan as $j)
                                 <tr>
-                                <td>1</td>
-                                <td>1765 </td>
-                                <td>Kepala Seksi Perencanaan Keuangan</td>
+                                    @php
+                                    $no=1;
+                                    @endphp   
+                                <td>{{ $no++ }}</td>
+                                <td>{{ $j->kode_jabatan }}</td>
+                                <td>{{ $j->jabatan }}</td>
                                     <td class="text-center">
                                         <a href="" class="btn btn-sm btn-primary " >Info</a>
-                                    <a href="" class="btn btn-sm btn-info " >Edit</a>
-                                        <a href="" class="btn btn-sm btn-danger" >Hapus</a>
+                                    <a href="{{route('jabatan_edit', ['id' => IDCrypt::Encrypt( $j->id)])}}" class="btn btn-sm btn-info " >Edit</a>
+                                        <a href="{{route('jabatan_hapus', ['id' => IDCrypt::Encrypt( $j->id)])}}" class="btn btn-sm btn-danger" >Hapus</a>
 
                                     </td>
                                 </tr>
+                                @endforeach
                         </tbody>
                       </table>
                     </div>
@@ -71,10 +73,10 @@
           <form  method="post" action="">
 
             <div class="form-group">
-              <input type="text" name=""  class="form-control" placeholder="Kode Jabatan"/>
+              <input type="text" name="kode_jabatan"  class="form-control" placeholder="Kode Jabatan"/>      
             </div>
             <div class="form-group">
-                <input type="text" name=""  class="form-control" placeholder="Nama Jabatan"/>
+                <input type="text" name="jabatan"  class="form-control" placeholder="Nama Jabatan"/>
             </div>
             <div class="form-group">
              <div class="text-right">

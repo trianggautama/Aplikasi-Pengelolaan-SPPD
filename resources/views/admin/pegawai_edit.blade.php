@@ -19,19 +19,27 @@
                                 @csrf
                                 <div class="form-group row">
                                     <div class="col-md">
-                                        <input id="nip" type="text" class="form-control" name="nip" value="" required autofocus>
+                                        <input id="nip" type="text" class="form-control" name="nip" value="{{$Karyawan->nip}}" required autofocus>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-md">
-                                        <input id="nama" type="text" class="form-control" name="nama" value="" required autofocus>
+                                        <input id="nama" type="text" class="form-control" name="nama" value="{{$Karyawan->nama}}" required autofocus>
                                     </div>
                                 </div>
+                                {{-- <div class="form-group">
+                                  <p>Jabatan</p>
+                                  <select class="form-control" name="id_jabatan">
+                                    @foreach($Karyawan as $p)
+                                    <option value="{{ $p->id_jabatan }}">{{ $p->jabatan->jabatan}}</option>
+                                    @endforeach
+                                  </select>
+                               </div> --}}
 
                                 <div class="form-group">
                                     <p>Jabatan</p>
-                                    <select class="form-control" name="jukir_id">
-                                        <option value="">isi jabatannya </option>
+                                    <select class="form-control" name="id_jabatan">
+                                        <option value="{{$Karyawan->id_jabatan}}">isi jabatannya </option>
                                     </select>
                                  </div>
                                 <div class="form-group row mb-0">
