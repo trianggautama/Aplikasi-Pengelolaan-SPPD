@@ -205,7 +205,7 @@ class adminController extends Controller
         $Provinsi->provinsi= $request->provinsi;
         $Provinsi->save();
 
-          return redirect(route('provinsi_index'))->with('success', 'Data Provinsi '.$request->provinsi.' Berhasil di Tambahkan');
+          return redirect(route('provinsi_index'))->with('sukses', 'Data Provinsi '.$request->provinsi.' Berhasil di Tambahkan');
       }//menambahkan data Provinsi
 
     //kecamatan
@@ -225,7 +225,7 @@ class adminController extends Controller
         $kecamatan->nama_kecamatan= $request->nama_kecamatan;
         $kecamatan->save();
 
-          return redirect(route('kecamatan-index'))->with('success', 'Data kecamatan '.$request->nama_kecamatan.' Berhasil di Tambahkan');
+          return redirect(route('kecamatan-index'))->with('sukses', 'Data kecamatan '.$request->nama_kecamatan.' Berhasil di Tambahkan');
       }//menambahkan data kecamatan
 
       public function kecamatan_edit($id){
@@ -256,7 +256,7 @@ class adminController extends Controller
        ]);
        $kecamatan->nama_kecamatan= $request->nama_kecamatan;
        $kecamatan->update();
-       return redirect(route('kecamatan-index'))->with('success', 'Data kecamatan '.$request->nama_kecamatan.' Berhasil di Ubah');
+       return redirect(route('kecamatan-index'))->with('ubah', 'Data kecamatan '.$request->nama_kecamatan.' Berhasil di Ubah');
       }//mengubah data kecamatan
 
        public function kecamatan_hapus($id){
@@ -264,7 +264,7 @@ class adminController extends Controller
             $kecamatan=kecamatan::findOrFail($id);
             $kecamatan->kelurahan()->delete();
             $kecamatan->delete();
-            return redirect(route('kecamatan-index'))->with('success', 'Data  Berhasil di Hapus');
+            return redirect(route('kecamatan-index'))->with('hapus', 'Data  Berhasil di Hapus');
 
     }  //menghapus data  kecamatan
 
@@ -293,7 +293,7 @@ class adminController extends Controller
 
         $kelurahan->save();
 
-          return redirect(route('kelurahan-index'))->with('success', 'Data kelurahan '.$request->nama_kelurahan.' Berhasil di Tambahkan');
+          return redirect(route('kelurahan-index'))->with('sukses', 'Data kelurahan '.$request->nama_kelurahan.' Berhasil di Tambahkan');
       }//menambah data kelurahan
 
       public function kelurahan_detail($id){
@@ -309,9 +309,8 @@ class adminController extends Controller
         $nama_kelurahan=$kelurahan->nama_kelurahan;
         $kelurahan->lokasi_rambu()->delete();
         $kelurahan->delete();
-        return redirect(route('kelurahan-index'))->with('success', 'Data kecamatan '.$nama_kelurahan.' Berhasil di Hapus');
+        return redirect(route('kelurahan-index'))->with('hapus', 'Data kecamatan '.$nama_kelurahan.' Berhasil di Hapus');
     } //menghapus data kelurahan
-
 
 
 }

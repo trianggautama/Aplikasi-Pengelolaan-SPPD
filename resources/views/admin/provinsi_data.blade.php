@@ -8,14 +8,20 @@
 
                 <!-- Page Heading -->
                 <h1 class="h3 mb-2 text-gray-800">Tables</h1>
-                <a href="##tambahdata" data-toggle="modal"data-target="#tambahdata" class="btn btn-sm btn-success" style="margin-bottom:15px;">Tambah Data  </a>
-
+                <div class="text-right">
+                        <a href="##tambahdata" data-toggle="modal"data-target="#tambahdata" class="btn btn-sm btn-success" style="margin-bottom:15px;"> + Tambah Data  </a>
+                        <a href=""  class="btn btn-sm btn-primary" style="margin-bottom:15px;"><i class="fas fa-print"></i> Cetak Data  </a>
+                    </div>
                 <!-- DataTales Example -->
                 <div class="card shadow mb-4">
                   <div class="card-header py-3">
                     <h6 class="m-0 font-weight-bold text-primary">Data Provinsi</h6>
                   </div>
                   <div class="card-body">
+                        @include('layouts.alert_sukses')
+                        @include('layouts.alert_ubah')
+                        @include('layouts.alert_hapus')
+                        @include('layouts.errors')
                     <div class="table-responsive">
                       <table class="table table-bordered" id="myTable" width="100%" cellspacing="0">
                         <thead>
@@ -39,7 +45,7 @@
                             <tr>
                                 @php
                                 $no=1;
-                                @endphp   
+                                @endphp
                             <td>{{ $no++ }}</td>
                             <td>{{ $p->kode_provinsi }}</td>
                             <td>{{ $p->provinsi }}</td>
@@ -50,14 +56,14 @@
 
                                 </td>
                             </tr>
-                    @endforeach    
+                    @endforeach
                         </tbody>
                       </table>
                     </div>
-                  </div>s
+                  </div>
                 </div>
 
-              </div>s
+              </div>
 <div id="tambahdata" class="modal fade" tabindex="-1" role="dialog" >
     <div class="modal-dialog" role="document" >
       <div class="modal-content">

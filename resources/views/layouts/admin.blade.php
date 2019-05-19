@@ -9,7 +9,7 @@
   <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
-  <title>Silang</title>
+  <title>Apliaksi SPPD</title>
 
   <link rel="dns-prefetch" href="//fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
@@ -17,7 +17,7 @@
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script>
   <!-- Custom styles for this template-->
 
     <!-- Styles -->
@@ -35,11 +35,10 @@
 
     <!-- Sidebar -->
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/admin">
         <div class="sidebar-brand-icon ">
-                <img src="/images/pemko.jpg" width="60" height="35" class="d-inline-block align-top" alt="">
+                <img src="/images/pemko.png" width="35" height="35" class="d-inline-block align-top" alt="">
         </div>
         <div class="sidebar-brand-text mx-2">Aplikasi SPPD</div>
       </a>
@@ -49,7 +48,7 @@
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item">
-        <a class="nav-link" href="/home">
+        <a class="nav-link" href="/admin">
           <i class="fas fa-fw fa-home"></i>
           <span>Beranda</span></a>
       </li>
@@ -81,11 +80,6 @@
           </div>
         </div>
       </li>
-          <li class="nav-item">
-                <a class="nav-link" href="">
-                 <i class="fas fa-list-ul"></i>
-                 <span>Data Lokasi Tujuan</span></a>
-              </li>
               <li class="nav-item">
                 <a class="nav-link" href="">
                  <i class="fas fa-list-ul"></i>

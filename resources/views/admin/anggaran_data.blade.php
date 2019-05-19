@@ -8,7 +8,10 @@
 
                 <!-- Page Heading -->
                 <h1 class="h3 mb-2 text-gray-800">Tables</h1>
-                <a href="##tambahdata" data-toggle="modal"data-target="#tambahdata" class="btn btn-sm btn-success" style="margin-bottom:15px;">Tambah Data  </a>
+                <div class="text-right">
+                    <a href="##tambahdata" data-toggle="modal"data-target="#tambahdata" class="btn btn-sm btn-success" style="margin-bottom:15px;"> + Tambah Data  </a>
+                    <a href=""  class="btn btn-sm btn-primary" style="margin-bottom:15px;"><i class="fas fa-print"></i> Cetak Data  </a>
+                </div>
 
                 <!-- DataTales Example -->
                 <div class="card shadow mb-4">
