@@ -21,32 +21,32 @@
                         <thead>
                           <tr>
                             <th>No</th>
-                            <th>Kode Provinsi</th>
-                            <th>Provinsi</th>
+                            <th>Kode Kecamatan</th>
+                            <th>Kecamatan</th>
                             <th>Action</th>
                           </tr>
                         </thead>
                         <tfoot>
                           <tr>
                             <th>No</th>
-                            <th>Kode Provinsi</th>
-                            <th>Provinsi</th>
+                            <th>Kode Kecamatan</th>
+                            <th>Kecamatan</th>
                             <th>Action</th>
                           </tr>
                         </tfoot>
                         <tbody>
-                            @foreach($Provinsi as $p)
+                            @foreach($Kecamatan as $p)
                             <tr>
                                 @php
                                 $no=1;
                                 @endphp   
                             <td>{{ $no++ }}</td>
-                            <td>{{ $p->kode_provinsi }}</td>
-                            <td>{{ $p->provinsi }}</td>
+                            <td>{{ $p->kode_kecamatan }}</td>
+                            <td>{{ $p->kecamatan }}</td>
                                 <td class="text-center">
                                     <a href="" class="btn btn-sm btn-primary " >Info</a>
-                                <a href="{{route('provinsi_edit', ['id' => IDCrypt::Encrypt( $p->id)])}}" class="btn btn-sm btn-info " >Edit</a>
-                                    <a href="{{route('provinsi_hapus', ['id' => IDCrypt::Encrypt( $p->id)])}}" class="btn btn-sm btn-danger" >Hapus</a>
+                                <a href="{{route('kecamatan_edit', ['id' => IDCrypt::Encrypt( $p->id)])}}" class="btn btn-sm btn-info " >Edit</a>
+                                    <a href="{{route('kecamatan_hapus', ['id' => IDCrypt::Encrypt( $p->id)])}}" class="btn btn-sm btn-danger" >Hapus</a>
 
                                 </td>
                             </tr>
@@ -73,10 +73,10 @@
           <form  method="post" action="">
 
             <div class="form-group">
-              <input type="text" name="kode_provinsi"  class="form-control" placeholder="Kode Provinsi"/>
+              <input type="text" name="kode_kecamatan"  class="form-control" placeholder="Kode Kecamatan"/>
             </div>
             <div class="form-group">
-                <input type="text" name="provinsi"  class="form-control" placeholder="Provinsi"/>
+                <input type="text" name="kecamatan"  class="form-control" placeholder="Kecamatan"/>
             </div>
             <div class="form-group">
              <div class="text-right">

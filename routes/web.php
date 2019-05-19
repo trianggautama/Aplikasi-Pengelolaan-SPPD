@@ -58,7 +58,16 @@ Route::get('/anggaran/hapus/{id}','adminController@anggaran_hapus')
 ->name('anggaran_hapus');
 
 //provinsi
-Route::get('/provinsi','adminController@provinsi_index')->name('provinsi_index');
+Route::get('/provinsi','adminController@provinsi_index')
+->name('provinsi_index');
+Route::post('/provinsi','adminController@provinsi_tambah')
+->name('provinsi_tambah');
+Route::get('/provinsi/edit/{id}','adminController@provinsi_edit')
+->name('provinsi_edit');
+Route::put('/provinsi/edit/{id}','adminController@provinsi_update')
+->name('provinsi_update');
+Route::get('/provinsi/hapus/{id}','adminController@provinsi_hapus')
+->name('provinsi_hapus');
 // });
 
 Auth::routes();
