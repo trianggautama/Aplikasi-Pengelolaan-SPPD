@@ -197,7 +197,7 @@ class adminController extends Controller
     public function provinsi_tambah(Request $request){
 
         $this->validate(request(),[
-          'provinsi'=>'required|unique:kecamatan'
+          'provinsi'=>'required|unique:provinsis'
         ]);
 
         $Provinsi = new Provinsi;
@@ -208,6 +208,36 @@ class adminController extends Controller
        
           return redirect(route('provinsi_index'))->with('success', 'Data Provinsi '.$request->provinsi.' Berhasil di Tambahkan');
       }//menambahkan data Provinsi
+
+      public function provinsi_edit($id){
+        $id = IDCrypt::Decrypt($id);
+        $Provinsi = Provinsi::findOrFail($id);
+
+        return view('admin.provinsi_edit',compact('Provinsi'));
+       }//menampikan halaman edit Provinsi
+
+       public function provinsi_update(Request $request, $id){
+        $id = IDCrypt::Decrypt($id);
+        $Provinsi = Provinsi::findOrFail($id);
+
+        $this->validate(request(),[
+           'provinsi'=>'required'
+       ]);
+
+        $Provinsi->kode_provinsi= $request->kode_provinsi;
+        $Provinsi->provinsi= $request->provinsi;
+        $Provinsi->update();
+       return redirect(route('provinsi_index'))->with('success', 'Data Provinsi '.$request->provinsi.' Berhasil di Ubah');
+      }//mengubah data provinsi
+
+       public function provinsi_hapus($id){
+        $id = IDCrypt::Decrypt($id);
+            $Provinsi=Provinsi::findOrFail($id);
+            $Provinsi->kecamatan()->delete();
+            $Provinsi->delete();
+            return redirect(route('provinsi_index'))->with('success', 'Data  Berhasil di Hapus');
+       
+    }  //menghapus data  kecamatan
 
     //kecamatan
     public function kecamatan_index(){
