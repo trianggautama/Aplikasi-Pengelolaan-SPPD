@@ -33,15 +33,15 @@ class adminController extends Controller
             'nama'=>'required',
             'id_jabatan'=>'required'
         ]);
-    
+
         $Karyawan = new Karyawan;
 
         $Karyawan->id_jabatan   = $request->id_jabatan;
         $Karyawan->nip          = $request->nip;
         $Karyawan->nama         = $request->nama;
         $Karyawan->save();
-           
-        return redirect(route('pegawai_index'))->with('success', 'Data Karyawan '.$request->nama.' Berhasil di Tambahkan');
+
+        return redirect(route('pegawai_index'))->with('sukses', 'Data Karyawan '.$request->nama.' Berhasil di Tambahkan');
     }//fungsi menambahkan data pegawai
 
     public function pegawai_edit($id){
@@ -49,7 +49,6 @@ class adminController extends Controller
         $Karyawan = Karyawan::findOrFail($id);
         return view('admin.pegawai_edit',['Karyawan' => $Karyawan]);
     }
-
     public function pegawai_update(Request $request, $id){
         $id = IDCrypt::Decrypt($id);
         $Karyawan = Karyawan::findOrFail($id);
@@ -62,8 +61,8 @@ class adminController extends Controller
         $Karyawan->kode_jabatan = $request->kode_jabatan;
         $Karyawan->jabatan = $request->jabatan;
         $Karyawan->update();
-        return redirect(route('jabatan_index'))->with('success', 'Data Karyawan '.$request->jabatan.' Berhasil di ubah');
-    } 
+        return redirect(route('jabatan_index'))->with('ubah', 'Data Karyawan '.$request->jabatan.' Berhasil di ubah');
+    }
 
     public function pagawai_hapus($id){
         $id = IDCrypt::Decrypt($id);
@@ -71,8 +70,8 @@ class adminController extends Controller
         // File::delete('images/rambu/'.$rambu->gambar);
         // $rambu->lokasi_rambu()->delete();
         $Karyawan->delete();
-       
-        return redirect(route('jabatan_index'))->with('success', 'Data jabatan Berhasil di hapus');
+
+        return redirect(route('jabatan_index'))->with('hapus', 'Data jabatan Berhasil di hapus');
     }//fungsi menghapus data jabatan
 
     //jabatan
@@ -87,14 +86,14 @@ class adminController extends Controller
             'kode_jabatan'=>'required|unique:jabatans',
             'jabatan'=>'required|unique:jabatans',
         ]);
-    
+
         $Jabatan = new Jabatan;
 
         $Jabatan->kode_jabatan  = $request->kode_jabatan;
         $Jabatan->jabatan       = $request->jabatan;
         $Jabatan->save();
-           
-        return redirect(route('jabatan_index'))->with('success', 'Data jabatan '.$request->jabatan.' Berhasil di Tambahkan');
+
+        return redirect(route('jabatan_index'))->with('sukses', 'Data jabatan '.$request->jabatan.' Berhasil di Tambahkan');
     }//fungsi menambahkan data jabatan
 
     public function jabatan_edit($id){
@@ -115,8 +114,8 @@ class adminController extends Controller
         $Jabatan->kode_jabatan = $request->kode_jabatan;
         $Jabatan->jabatan = $request->jabatan;
         $Jabatan->update();
-        return redirect(route('jabatan_index'))->with('success', 'Data Jabatan '.$request->jabatan.' Berhasil di ubah');
-    } 
+        return redirect(route('jabatan_index'))->with('ubah', 'Data Jabatan '.$request->jabatan.' Berhasil di ubah');
+    }
 
     public function jabatan_hapus($id){
         $id = IDCrypt::Decrypt($id);
@@ -124,8 +123,8 @@ class adminController extends Controller
         // File::delete('images/rambu/'.$rambu->gambar);
         // $rambu->lokasi_rambu()->delete();
         $Jabatan->delete();
-       
-        return redirect(route('jabatan_index'))->with('success', 'Data jabatan Berhasil di hapus');
+
+        return redirect(route('jabatan_index'))->with('hapus', 'Data jabatan Berhasil di hapus');
     }//fungsi menghapus data jabatan
 
     //provinsi

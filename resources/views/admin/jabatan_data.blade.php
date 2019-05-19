@@ -16,6 +16,10 @@
                     <h6 class="m-0 font-weight-bold text-primary">Data Jabatan</h6>
                   </div>
                   <div class="card-body">
+                        @include('layouts.alert_sukses')
+                        @include('layouts.alert_ubah')
+                        @include('layouts.alert_hapus')
+                        @include('layouts.errors')
                     <div class="table-responsive">
                       <table class="table table-bordered" id="myTable" width="100%" cellspacing="0">
                         <thead>
@@ -39,7 +43,7 @@
                                 <tr>
                                     @php
                                     $no=1;
-                                    @endphp   
+                                    @endphp
                                 <td>{{ $no++ }}</td>
                                 <td>{{ $j->kode_jabatan }}</td>
                                 <td>{{ $j->jabatan }}</td>
@@ -73,7 +77,7 @@
           <form  method="post" action="">
 
             <div class="form-group">
-              <input type="text" name="kode_jabatan"  class="form-control" placeholder="Kode Jabatan"/>      
+              <input type="text" name="kode_jabatan"  class="form-control" placeholder="Kode Jabatan"/>
             </div>
             <div class="form-group">
                 <input type="text" name="jabatan"  class="form-control" placeholder="Nama Jabatan"/>
