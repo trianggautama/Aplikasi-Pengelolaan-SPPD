@@ -16,6 +16,10 @@
                     <h6 class="m-0 font-weight-bold text-primary">Data Anggaran</h6>
                   </div>
                   <div class="card-body">
+                        @include('layouts.alert_sukses')
+                        @include('layouts.alert_ubah')
+                        @include('layouts.alert_hapus')
+                        @include('layouts.errors')
                     <div class="table-responsive">
                       <table class="table table-bordered" id="myTable" width="100%" cellspacing="0">
                         <thead>
@@ -41,7 +45,7 @@
                                 <tr>
                                     @php
                                     $no=1;
-                                    @endphp   
+                                    @endphp
                                 <td>{{ $no++ }}</td>
                                 <td>{{ $p->pembebanan }}</td>
                                 <td>{{ $p->akun }}</td>
@@ -53,7 +57,7 @@
 
                                     </td>
                                 </tr>
-                        @endforeach    
+                        @endforeach
                         </tbody>
                       </table>
                     </div>

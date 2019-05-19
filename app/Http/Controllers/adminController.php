@@ -67,13 +67,8 @@ class adminController extends Controller
         $Karyawan->nip = $request->nip;
         $Karyawan->nama = $request->nama;
         $Karyawan->update();
-<<<<<<< HEAD
-        return redirect(route('jabatan_index'))->with('ubah', 'Data Karyawan '.$request->jabatan.' Berhasil di ubah');
-    }
-=======
         return redirect(route('pegawai_index'))->with('success', 'Data Karyawan '.$request->nama.' Berhasil di ubah');
-    } 
->>>>>>> 1238c66f502301994d74db2c74d4e1bc61003c49
+    }
 
     public function pegawai_hapus($id){
         $id = IDCrypt::Decrypt($id);
@@ -148,17 +143,17 @@ class adminController extends Controller
             'pembebanan'=>'required',
             'akun'=>'required',
             'tahun'=>'required'
-            
+
         ]);
-    
+
         $Anggaran = new Anggaran;
 
         $Anggaran->pembebanan   = $request->pembebanan;
         $Anggaran->akun         = $request->akun;
         $Anggaran->tahun        = $request->tahun;
         $Anggaran->save();
-           
-        return redirect(route('anggaran_index'))->with('success', 'Data anggaran '.$request->anggaran.' Berhasil di Tambahkan');
+
+        return redirect(route('anggaran_index'))->with('sukses', 'Data anggaran '.$request->anggaran.' Berhasil di Tambahkan');
     }//fungsi menambahkan data anggaran
 
     public function anggaran_edit($id){
@@ -181,17 +176,17 @@ class adminController extends Controller
         $Anggaran->akun         = $request->akun;
         $Anggaran->tahun        = $request->tahun;
         $Anggaran->update();
-        return redirect(route('anggaran_index'))->with('success', 'Data Anggaran '.$request->anggaran.' Berhasil di ubah');
-    } 
+        return redirect(route('anggaran_index'))->with('ubah', 'Data Anggaran '.$request->anggaran.' Berhasil di ubah');
+    }
 
     public function anggaran_hapus($id){
         $id = IDCrypt::Decrypt($id);
         $Anggaran=Anggaran::findOrFail($id);
         $Anggaran->delete();
-       
-        return redirect(route('anggaran_index'))->with('success', 'Data Anggaran Berhasil di hapus');
+
+        return redirect(route('anggaran_index'))->with('hapus', 'Data Anggaran Berhasil di hapus');
     }//fungsi menghapus data anggaran
-    
+
     //provinsi
     public function provinsi_index(){
         $Provinsi = Provinsi::all();
@@ -209,7 +204,7 @@ class adminController extends Controller
         $Provinsi->kode_provinsi= $request->kode_provinsi;
         $Provinsi->provinsi= $request->provinsi;
         $Provinsi->save();
-       
+
           return redirect(route('provinsi_index'))->with('success', 'Data Provinsi '.$request->provinsi.' Berhasil di Tambahkan');
       }//menambahkan data Provinsi
 
@@ -219,7 +214,7 @@ class adminController extends Controller
         return view('admin.kecamatan_data',compact('Kecamatan'));
     }//menampikan data kecamatan
 
-    
+
     public function kecamatan_tambah(Request $request){
 
         $this->validate(request(),[
@@ -229,7 +224,7 @@ class adminController extends Controller
         $kecamatan = new kecamatan;
         $kecamatan->nama_kecamatan= $request->nama_kecamatan;
         $kecamatan->save();
-       
+
           return redirect(route('kecamatan-index'))->with('success', 'Data kecamatan '.$request->nama_kecamatan.' Berhasil di Tambahkan');
       }//menambahkan data kecamatan
 
@@ -248,7 +243,7 @@ class adminController extends Controller
                                 ->get();
         $lokasi= $kelurahan->flatten(2);
         $lokasi->values()->all();
-        
+
       return view('lokasi.kecamatan_detail',compact('lokasi','kecamatan'));
        }//melihat data kelurahan pada kecamatan tertentu
 
@@ -270,7 +265,7 @@ class adminController extends Controller
             $kecamatan->kelurahan()->delete();
             $kecamatan->delete();
             return redirect(route('kecamatan-index'))->with('success', 'Data  Berhasil di Hapus');
-       
+
     }  //menghapus data  kecamatan
 
 
@@ -283,7 +278,7 @@ class adminController extends Controller
         return view('lokasi.kelurahan',compact('kelurahan','kecamatan'));
     }//menampilkan data kelurahan
 
-    
+
     public function kelurahan_tambah(Request $request){
 
         $this->validate(request(),[
@@ -297,7 +292,7 @@ class adminController extends Controller
         $kelurahan->kecamatan_id= $request->kecamatan_id;
 
         $kelurahan->save();
-       
+
           return redirect(route('kelurahan-index'))->with('success', 'Data kelurahan '.$request->nama_kelurahan.' Berhasil di Tambahkan');
       }//menambah data kelurahan
 
