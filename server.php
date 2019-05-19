@@ -18,8 +18,4 @@ if ($uri !== '/' && file_exists(__DIR__.'/public'.$uri)) {
     return false;
 }
 
-<<<<<<< HEAD
 require_once __DIR__.'/public/index.php';
-=======
-require_once __DIR__.'/public/index.php';
->>>>>>> 2ef2ee2c57e0772c571d1258cdcb8779bf2a1083
