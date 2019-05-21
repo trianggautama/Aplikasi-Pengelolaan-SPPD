@@ -83,6 +83,19 @@ Route::get('/kabupaten/hapus/{id}','adminController@kabupaten_hapus')
 ->name('kabupaten_hapus');
 // });
 
+//kecamatan
+Route::get('/kecamatan','adminController@kecamatan_index')
+->name('kecamatan_index');
+Route::post('/kecamatan','adminController@kecamatan_tambah')
+->name('kecamatan_tambah');
+Route::get('/kecamatan/edit/{id}','adminController@kecamatan_edit')
+->name('kecamatan_edit');
+Route::put('/kecamatan/edit/{id}','adminController@kecamatan_update')
+->name('kecamatan_update');
+Route::get('/kecamatan/hapus/{id}','adminController@kecamatan_hapus')
+->name('kecamatan_hapus');
+// });
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

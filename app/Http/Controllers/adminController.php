@@ -281,6 +281,7 @@ class adminController extends Controller
            'kabupaten'=>'required'
        ]);
 
+        $Kabupaten->id_provinsi= $request->id_provinsi;
         $Kabupaten->kode_kabupaten= $request->kode_kabupaten;
         $Kabupaten->kabupaten= $request->kabupaten;
         $Kabupaten->update();
@@ -301,60 +302,56 @@ class adminController extends Controller
     //kecamatan
     public function kecamatan_index(){
         $Kecamatan = Kecamatan::all();
-        return view('admin.kecamatan_data',compact('Kecamatan'));
+        $Kabupaten = Kabupaten::all();
+        return view('admin.kecamatan_data',compact('Kecamatan','Kabupaten'));
     }//menampikan data kecamatan
 
 
     public function kecamatan_tambah(Request $request){
 
         $this->validate(request(),[
-          'nama_kecamatan'=>'required|unique:kecamatan'
+          'kode_kecamatan'=>'required|unique:kecamatans',
+          'kecamatan'=>'required|unique:kecamatans'
         ]);
 
         $kecamatan = new kecamatan;
-        $kecamatan->nama_kecamatan= $request->nama_kecamatan;
+        $kecamatan->id_kabupaten= $request->id_kabupaten;
+        $kecamatan->kode_kecamatan= $request->kode_kecamatan;
+        $kecamatan->kecamatan= $request->kecamatan;
         $kecamatan->save();
 
-          return redirect(route('kecamatan-index'))->with('sukses', 'Data kecamatan '.$request->nama_kecamatan.' Berhasil di Tambahkan');
+          return redirect(route('kecamatan_index'))->with('sukses', 'Data kecamatan '.$request->nama_kecamatan.' Berhasil di Tambahkan');
       }//menambahkan data kecamatan
 
       public function kecamatan_edit($id){
         $id = IDCrypt::Decrypt($id);
-        $kecamatan = kecamatan::findOrFail($id);
+        $Kecamatan = Kecamatan::findOrFail($id);
+        $Kabupaten = Kabupaten::All();
 
-        return view('lokasi.kecamatan_edit',compact('kecamatan'));
+        return view('admin.kecamatan_edit',compact('Kecamatan','Kabupaten'));
        }//menampikan halaman edit kecamatan
-
-      public function kecamatan_detail($id){
-        $id = IDCrypt::Decrypt($id);
-        $kecamatan = kecamatan::findOrFail($id);
-        $kelurahan = kelurahan:: with('lokasi_rambu')
-                                ->where('kecamatan_id',$id)
-                                ->get();
-        $lokasi= $kelurahan->flatten(2);
-        $lokasi->values()->all();
-
-      return view('lokasi.kecamatan_detail',compact('lokasi','kecamatan'));
-       }//melihat data kelurahan pada kecamatan tertentu
 
        public function kecamatan_update(Request $request, $id){
         $id = IDCrypt::Decrypt($id);
-        $kecamatan = kecamatan::findOrFail($id);
+        $Kecamatan = Kecamatan::findOrFail($id);
 
         $this->validate(request(),[
-           'nama_kecamatan'=>'required'
+           'kecamatan'=>'required'
        ]);
-       $kecamatan->nama_kecamatan= $request->nama_kecamatan;
-       $kecamatan->update();
-       return redirect(route('kecamatan-index'))->with('ubah', 'Data kecamatan '.$request->nama_kecamatan.' Berhasil di Ubah');
+       $Kecamatan->id_kabupaten= $request->id_kabupaten;
+       $Kecamatan->kode_kecamatan= $request->kode_kecamatan;
+       $Kecamatan->kecamatan= $request->kecamatan;
+    //    dd($Kecamatan);
+       $Kecamatan->update();
+       return redirect(route('kecamatan_index'))->with('ubah', 'Data kecamatan '.$request->kecamatan.' Berhasil di Ubah');
       }//mengubah data kecamatan
 
-       public function kecamatan_hapus($id){
+      public function kecamatan_hapus($id){
         $id = IDCrypt::Decrypt($id);
-            $kecamatan=kecamatan::findOrFail($id);
-            $kecamatan->kelurahan()->delete();
-            $kecamatan->delete();
-            return redirect(route('kecamatan-index'))->with('hapus', 'Data  Berhasil di Hapus');
+            $Kecamatan=kecamatan::findOrFail($id);
+            // $Kecamatan->kelurahan()->delete();
+            $Kecamatan->delete();
+            return redirect(route('kecamatan_index'))->with('hapus', 'Data  Berhasil di Hapus');
 
     }  //menghapus data  kecamatan
 

@@ -50,7 +50,7 @@
 
                 </div>
               </div>
-              <a href="login.html" class="btn btn-primary btn-user btn-block">
+              <button type="submit" class="btn btn-primary btn-user">
                 Register Account
               </a>
               <hr>
