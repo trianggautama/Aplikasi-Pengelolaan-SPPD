@@ -96,6 +96,19 @@ Route::get('/kecamatan/hapus/{id}','adminController@kecamatan_hapus')
 ->name('kecamatan_hapus');
 // });
 
+//kelurahan
+Route::get('/kelurahan','adminController@kelurahan_index')
+->name('kelurahan_index');
+Route::post('/kelurahan','adminController@kelurahan_tambah')
+->name('kelurahan_tambah');
+Route::get('/kelurahan/edit/{id}','adminController@kelurahan_edit')
+->name('kelurahan_edit');
+Route::put('/kelurahan/edit/{id}','adminController@kelurahan_update')
+->name('kelurahan_update');
+Route::get('/kelurahan/hapus/{id}','adminController@kelurahan_hapus')
+->name('kelurahan_hapus');
+// });
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
