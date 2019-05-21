@@ -13,7 +13,7 @@
                 <!-- DataTales Example -->
                 <div class="card shadow mb-4">
                   <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Data Kabupaten</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Data Kabupaten / Kota</h6>
                   </div>
                   <div class="card-body">
                     <div class="table-responsive">
@@ -21,8 +21,8 @@
                         <thead>
                           <tr>
                             <th>No</th>
-                            <th>Kode Kabupaten</th>
-                            <th>Kabupaten</th>
+                            <th>Kode Kabupaten / Kota</th>
+                            <th>Kabupaten / Kota</th>
                             <th>Provinsi</th>
                             <th>Action</th>
                           </tr>
@@ -30,8 +30,8 @@
                         <tfoot>
                           <tr>
                             <th>No</th>
-                            <th>Kode Kabupaten</th>
-                            <th>Kabupaten</th>
+                            <th>Kode Kabupaten / Kota</th>
+                            <th>Kabupaten / Kota</th>
                             <th>Provinsi</th>
                             <th>Action</th>
                           </tr>
