@@ -366,7 +366,7 @@ class adminController extends Controller
         $Kelurahan = Kelurahan::all();
         $Kecamatan = Kecamatan::all();
 
-        return view('lokasi.kelurahan',compact('Kelurahan','Kecamatan'));
+        return view('admin.kelurahan',compact('Kelurahan','Kecamatan'));
     }//menampilkan data kelurahan
 
 
