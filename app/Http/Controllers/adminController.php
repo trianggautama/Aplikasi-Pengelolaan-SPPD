@@ -375,17 +375,17 @@ class adminController extends Controller
         $this->validate(request(),[
           'kode_kelurahan'=>'required|unique:kelurahans',
           'kelurahan'=>'required|unique:kelurahans',
-          'kecamatan_id'=>'required'
+          'id_kecamatan'=>'required'
 
         ]);
 
-        $Kelurahan = new kelurahan;
+        $Kelurahan = new Kelurahan;
         $Kelurahan->kode_kelurahan= $request->kode_kelurahan;
         $Kelurahan->kelurahan= $request->kelurahan;
-        $Kelurahan->kecamatan_id= $request->kecamatan_id;
+        $Kelurahan->id_kecamatan= $request->id_kecamatan;
 
         $Kelurahan->save();
-
+        
           return redirect(route('kelurahan_index'))->with('sukses', 'Data kelurahan '.$request->kelurahan.' Berhasil di Tambahkan');
       }//menambah data kelurahan
 
