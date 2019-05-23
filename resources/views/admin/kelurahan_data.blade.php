@@ -13,7 +13,7 @@
                 <!-- DataTales Example -->
                 <div class="card shadow mb-4">
                   <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Data Anggaran</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Data Kelurahan</h6>
                   </div>
                   <div class="card-body">
                     <div class="table-responsive">
@@ -21,39 +21,39 @@
                         <thead>
                           <tr>
                             <th>No</th>
-                            <th>Pembebanan Anggaran</th>
-                            <th>Akun Anggaran</th>
-                            <th>Tahun Anggaran</th>
+                            <th>Kode Kelurahan</th>
+                            <th>Kelurahan</th>
+                            <th>Kecamatan</th>
                             <th>Action</th>
                           </tr>
                         </thead>
                         <tfoot>
                           <tr>
                             <th>No</th>
-                            <th>Pembebanan Anggaran</th>
-                            <th>Akun Anggaran</th>
-                            <th>Tahun Anggaran</th>
+                            <th>Kode Kelurahan</th>
+                            <th>Kelurahan</th>
+                            <th>Kecamatan</th>
                             <th>Action</th>
                           </tr>
                         </tfoot>
                         <tbody>
-                        @foreach($Anggaran as $p)
-                                <tr>
-                                    @php
-                                    $no=1;
-                                    @endphp   
-                                <td>{{ $no++ }}</td>
-                                <td>{{ $p->pembebanan }}</td>
-                                <td>{{ $p->akun }}</td>
-                                <td>{{ $p->tahun }}</td>
-                                    <td class="text-center">
-                                        <a href="" class="btn btn-sm btn-primary " >Info</a>
-                                    <a href="{{route('anggaran_edit', ['id' => IDCrypt::Encrypt( $p->id)])}}" class="btn btn-sm btn-info " >Edit</a>
-                                        <a href="{{route('anggaran_hapus', ['id' => IDCrypt::Encrypt( $p->id)])}}" class="btn btn-sm btn-danger" >Hapus</a>
+                            @foreach($Kelurahan as $p)
+                            <tr>
+                                @php
+                                $no=1;
+                                @endphp   
+                            <td>{{ $no++ }}</td>
+                            <td>{{ $p->kode_kelurahan }}</td>
+                            <td>{{ $p->kelurahan }}</td>
+                            <td>{{ $p->kecamatan->kecamatan }}</td>
+                                <td class="text-center">
+                                    <a href="" class="btn btn-sm btn-primary " >Info</a>
+                                    <a href="{{route('kelurahan_edit', ['id' => IDCrypt::Encrypt( $p->id)])}}" class="btn btn-sm btn-info " >Edit</a>
+                                    <a href="{{route('kelurahan_hapus', ['id' => IDCrypt::Encrypt( $p->id)])}}" class="btn btn-sm btn-danger" >Hapus</a>
 
-                                    </td>
-                                </tr>
-                        @endforeach    
+                                </td>
+                            </tr>
+                    @endforeach    
                         </tbody>
                       </table>
                     </div>
@@ -76,17 +76,22 @@
           <form  method="post" action="">
 
             <div class="form-group">
-              <input type="text" name="pembebanan"  class="form-control" placeholder="Pembebanan Anggaran"/>
+              <input type="text" name="kode_kelurahan"  class="form-control" placeholder="Kode Kelurahan"/>
             </div>
             <div class="form-group">
-                <input type="text" name="akun"  class="form-control" placeholder="Akun Anggaran"/>
+                <input type="text" name="kelurahan"  class="form-control" placeholder="Kelurahan"/>
             </div>
             <div class="form-group">
-                <input type="date" name="tahun"  class="form-control" />
-            </div>
+                <p>Kecamatan</p>
+                <select class="form-control" name="id_kecamatan">
+                  @foreach($Kecamatan as $j)
+                  <option value="{{$j->id}}">{{ $j->kecamatan}}</option>
+                  @endforeach
+                </select>
+             </div>
             <div class="form-group">
              <div class="text-right">
-               <input class="btn btn-primary" type="submit" name="submit" value="Submit">
+               <input class="btn btn-primary" type="submit" name="submit" value="Simpan">
                {{csrf_field() }}
              </div>
            </div>
@@ -99,3 +104,4 @@
         </div>
 
 @endsection
+
