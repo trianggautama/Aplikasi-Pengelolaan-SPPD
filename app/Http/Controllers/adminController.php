@@ -10,6 +10,7 @@ Use App\Anggaran;
 Use App\Provinsi;
 Use App\Kecamatan;
 Use App\Kabupaten;
+Use App\Kelurahan;
 use Illuminate\Http\Request;
 
 class adminController extends Controller
@@ -311,7 +312,8 @@ class adminController extends Controller
 
         $this->validate(request(),[
           'kode_kecamatan'=>'required|unique:kecamatans',
-          'kecamatan'=>'required|unique:kecamatans'
+          'kecamatan'=>'required|unique:kecamatans',
+          'id_kabupaten'=>'required'
         ]);
 
         $kecamatan = new kecamatan;
@@ -336,7 +338,9 @@ class adminController extends Controller
         $Kecamatan = Kecamatan::findOrFail($id);
 
         $this->validate(request(),[
-           'kecamatan'=>'required'
+           'kode_kecamatan'=>'required|unique:kecamatans',
+           'kecamatan'=>'required|unique:kecamatans',
+           'id_kabupaten'=>'required'
        ]);
        $Kecamatan->id_kabupaten= $request->id_kabupaten;
        $Kecamatan->kode_kecamatan= $request->kode_kecamatan;
@@ -359,44 +363,40 @@ class adminController extends Controller
      //kelurahan
 
      public function kelurahan_index(){
-        $kelurahan = kelurahan::all();
-        $kecamatan = kecamatan::all();
+        $Kelurahan = Kelurahan::all();
+        $Kecamatan = Kecamatan::all();
 
-        return view('lokasi.kelurahan',compact('kelurahan','kecamatan'));
+        return view('lokasi.kelurahan',compact('Kelurahan','Kecamatan'));
     }//menampilkan data kelurahan
 
 
     public function kelurahan_tambah(Request $request){
 
         $this->validate(request(),[
-          'nama_kelurahan'=>'required|unique:kelurahan',
+          'kode_kelurahan'=>'required|unique:kelurahans',
+          'kelurahan'=>'required|unique:kelurahans',
           'kecamatan_id'=>'required'
 
         ]);
 
-        $kelurahan = new kelurahan;
-        $kelurahan->nama_kelurahan= $request->nama_kelurahan;
-        $kelurahan->kecamatan_id= $request->kecamatan_id;
+        $Kelurahan = new kelurahan;
+        $Kelurahan->kode_kelurahan= $request->kode_kelurahan;
+        $Kelurahan->kelurahan= $request->kelurahan;
+        $Kelurahan->kecamatan_id= $request->kecamatan_id;
 
-        $kelurahan->save();
+        $Kelurahan->save();
 
-          return redirect(route('kelurahan-index'))->with('sukses', 'Data kelurahan '.$request->nama_kelurahan.' Berhasil di Tambahkan');
+          return redirect(route('kelurahan_index'))->with('sukses', 'Data kelurahan '.$request->kelurahan.' Berhasil di Tambahkan');
       }//menambah data kelurahan
 
-      public function kelurahan_detail($id){
-        $id = IDCrypt::Decrypt($id);
-        $kelurahan = kelurahan::findOrFail($id);
-        $lokasi_rambu= lokasi_rambu::where('kelurahan_id',$id)->get();
-        return view('lokasi.kelurahan_detail',compact('kelurahan','lokasi_rambu'));
-       }//melihat data rambu pada elurahan tertentu
 
        public function kelurahan_hapus($id){
         $id = IDCrypt::Decrypt($id);
         $kelurahan=kelurahan::findOrFail($id);
-        $nama_kelurahan=$kelurahan->nama_kelurahan;
-        $kelurahan->lokasi_rambu()->delete();
+        // $nama_kelurahan=$kelurahan->nama_kelurahan;
+        // $kelurahan->lokasi_rambu()->delete();
         $kelurahan->delete();
-        return redirect(route('kelurahan-index'))->with('hapus', 'Data kecamatan '.$nama_kelurahan.' Berhasil di Hapus');
+        return redirect(route('kelurahan_index'))->with('hapus', 'Data Berhasil di Hapus');
     } //menghapus data kelurahan
 
 
