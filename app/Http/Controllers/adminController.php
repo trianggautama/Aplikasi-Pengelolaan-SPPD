@@ -234,7 +234,7 @@ class adminController extends Controller
        public function provinsi_hapus($id){
         $id = IDCrypt::Decrypt($id);
             $Provinsi=Provinsi::findOrFail($id);
-            // $Provinsi->kabupaten()->delete();
+            $Provinsi->kabupaten()->delete();
             // $Provinsi->kecamatan()->delete();
             // $Provinsi->kelurahan()->delete();
             $Provinsi->delete();
@@ -353,7 +353,7 @@ class adminController extends Controller
       public function kecamatan_hapus($id){
         $id = IDCrypt::Decrypt($id);
             $Kecamatan=kecamatan::findOrFail($id);
-            // $Kecamatan->kelurahan()->delete();
+            $Kecamatan->kelurahan()->delete();
             $Kecamatan->delete();
             return redirect(route('kecamatan_index'))->with('hapus', 'Data  Berhasil di Hapus');
 
