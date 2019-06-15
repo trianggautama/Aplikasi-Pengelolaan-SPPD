@@ -234,9 +234,6 @@ class adminController extends Controller
        public function provinsi_hapus($id){
         $id = IDCrypt::Decrypt($id);
             $Provinsi=Provinsi::findOrFail($id);
-            $Provinsi->kabupaten()->delete();
-            // $Provinsi->kecamatan()->delete();
-            // $Provinsi->kelurahan()->delete();
             $Provinsi->delete();
             return redirect(route('provinsi_index'))->with('success', 'Data  Berhasil di Hapus');
        
@@ -258,7 +255,7 @@ class adminController extends Controller
 
         $Kabupaten = new Kabupaten;
 
-        $Kabupaten->id_provinsi= $request->id_provinsi;
+        $Kabupaten->provinsi_id= $request->provinsi_id;
         $Kabupaten->kode_kabupaten= $request->kode_kabupaten;
         $Kabupaten->kabupaten= $request->kabupaten;
         $Kabupaten->save();
@@ -282,7 +279,7 @@ class adminController extends Controller
            'kabupaten'=>'required'
        ]);
 
-        $Kabupaten->id_provinsi= $request->id_provinsi;
+        $Kabupaten->provinsi_id= $request->provinsi_id;
         $Kabupaten->kode_kabupaten= $request->kode_kabupaten;
         $Kabupaten->kabupaten= $request->kabupaten;
         $Kabupaten->update();
@@ -292,9 +289,6 @@ class adminController extends Controller
        public function kabupaten_hapus($id){
         $id = IDCrypt::Decrypt($id);
             $Kabupaten=Kabupaten::findOrFail($id);
-            // $Kabupaten->kabupaten()->delete();
-            // $Kabupaten->kecamatan()->delete();
-            // $Kabupaten->kelurahan()->delete();
             $Kabupaten->delete();
             return redirect(route('kabupaten_index'))->with('success', 'Data  Berhasil di Hapus');
        
@@ -313,11 +307,11 @@ class adminController extends Controller
         $this->validate(request(),[
           'kode_kecamatan'=>'required|unique:kecamatans',
           'kecamatan'=>'required|unique:kecamatans',
-          'id_kabupaten'=>'required'
+          'kabupaten_id'=>'required'
         ]);
 
         $kecamatan = new kecamatan;
-        $kecamatan->id_kabupaten= $request->id_kabupaten;
+        $kecamatan->kabupaten_id= $request->kabupaten_id;
         $kecamatan->kode_kecamatan= $request->kode_kecamatan;
         $kecamatan->kecamatan= $request->kecamatan;
         $kecamatan->save();
@@ -340,9 +334,9 @@ class adminController extends Controller
         $this->validate(request(),[
            'kode_kecamatan'=>'required|unique:kecamatans',
            'kecamatan'=>'required|unique:kecamatans',
-           'id_kabupaten'=>'required'
+           'kabupaten_id'=>'required'
        ]);
-       $Kecamatan->id_kabupaten= $request->id_kabupaten;
+       $Kecamatan->kabupaten_id= $request->kabupaten_id;
        $Kecamatan->kode_kecamatan= $request->kode_kecamatan;
        $Kecamatan->kecamatan= $request->kecamatan;
     //    dd($Kecamatan);
@@ -353,7 +347,6 @@ class adminController extends Controller
       public function kecamatan_hapus($id){
         $id = IDCrypt::Decrypt($id);
             $Kecamatan=kecamatan::findOrFail($id);
-            $Kecamatan->kelurahan()->delete();
             $Kecamatan->delete();
             return redirect(route('kecamatan_index'))->with('hapus', 'Data  Berhasil di Hapus');
 
@@ -375,14 +368,14 @@ class adminController extends Controller
         $this->validate(request(),[
           'kode_kelurahan'=>'required|unique:kelurahans',
           'kelurahan'=>'required|unique:kelurahans',
-          'id_kecamatan'=>'required'
+          'kecamatan_id'=>'required'
 
         ]);
 
         $Kelurahan = new Kelurahan;
         $Kelurahan->kode_kelurahan= $request->kode_kelurahan;
         $Kelurahan->kelurahan= $request->kelurahan;
-        $Kelurahan->id_kecamatan= $request->id_kecamatan;
+        $Kelurahan->kecamatan_id= $request->kecamatan_id;
 
         $Kelurahan->save();
         
@@ -404,9 +397,9 @@ class adminController extends Controller
         $this->validate(request(),[
            'kode_kelurahan'=>'required|unique:kelurahans',
            'kelurahan'=>'required|unique:kelurahans',
-           'id_kecamatan'=>'required'
+           'kecamatan_id'=>'required'
        ]);
-       $Kelurahan->id_kecamatan= $request->id_kecamatan;
+       $Kelurahan->kecamatan_id= $request->kecamatan_id;
        $Kelurahan->kode_kelurahan= $request->kode_kelurahan;
        $Kelurahan->kelurahan= $request->kelurahan;
        $Kelurahan->update();
@@ -417,8 +410,6 @@ class adminController extends Controller
        public function kelurahan_hapus($id){
         $id = IDCrypt::Decrypt($id);
         $kelurahan=kelurahan::findOrFail($id);
-        // $nama_kelurahan=$kelurahan->nama_kelurahan;
-        // $kelurahan->lokasi_rambu()->delete();
         $kelurahan->delete();
         return redirect(route('kelurahan_index'))->with('hapus', 'Data Berhasil di Hapus');
     } //menghapus data kelurahan
