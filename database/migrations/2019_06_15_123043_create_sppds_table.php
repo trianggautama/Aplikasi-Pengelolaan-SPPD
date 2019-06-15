@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateKaryawansTable extends Migration
+class CreateSppdsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,17 @@ class CreateKaryawansTable extends Migration
      */
     public function up()
     {
-        Schema::create('karyawans', function (Blueprint $table) {
+        Schema::create('sppds', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedbigInteger('pejabat_id');
+            $table->unsignedbigInteger('pegawai_id');
             $table->unsignedbigInteger('pangkat_id');
             $table->unsignedbigInteger('jabatan_id');
-            $table->string('nip')->length('20');
-            $table->string('nama')->length('191');
-            $table->foreign('pangkat_id')->references('id')->on('pangkats')->onDelete('cascade');
-            $table->foreign('jabatan_id')->references('id')->on('jabatans')->onDelete('cascade');
+            $table->unsignedbigInteger('kegiatan_id');
+            $table->unsignedbigInteger('transportasi_id');
+            $table->unsignedbigInteger('tujuan_id');
+            $table->unsignedbigInteger('anggaran_id');
+            $table->string('keterangan');
             $table->timestamps();
         });
     }
@@ -32,6 +35,6 @@ class CreateKaryawansTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('karyawans');
+        Schema::dropIfExists('sppds');
     }
 }

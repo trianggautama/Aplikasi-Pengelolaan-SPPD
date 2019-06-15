@@ -30,9 +30,9 @@
                                 </div>
                                 <div class="form-group">
                                     <p>Provinsi</p>
-                                    <select class="form-control" name="id_provinsi">
+                                    <select class="form-control" name="provinsi_id">
                                         @foreach ($Provinsi as $j)
-                                        <option value="{{ $j->id}}" {{ $Kabupaten->id_provinsi == $j->id ? 'selected' : ''}}>{{$j->provinsi}}</option>
+                                        <option value="{{ $j->id}}" {{ $Kabupaten->provinsi_id == $j->id ? 'selected' : ''}}>{{$j->provinsi}}</option>
                                         @endforeach
                                     </select>
                                  </div>

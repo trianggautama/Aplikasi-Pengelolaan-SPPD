@@ -4,13 +4,19 @@ namespace App\Http\Controllers;
 
 use IDCrypt;
 Use App\User;
+Use App\Sppd;
+Use App\Pangkat;
 Use App\Jabatan;
 Use App\Karyawan;
 Use App\Anggaran;
+Use App\Kegiatan;
 Use App\Provinsi;
 Use App\Kecamatan;
 Use App\Kabupaten;
 Use App\Kelurahan;
+Use App\Tujuan;
+Use App\Transportasi;
+
 use Illuminate\Http\Request;
 
 class adminController extends Controller
@@ -27,8 +33,9 @@ class adminController extends Controller
     //pegawai
     public function pegawai_index(){
         $Karyawan = Karyawan::all();
+        $Pangkat = Pangkat::all();
         $Jabatan = Jabatan::all();
-        return view('admin.pegawai_data',compact('Karyawan','Jabatan'));
+        return view('admin.pegawai_data',compact('Karyawan','Pangkat','Jabatan'));
     }
 
     public function pegawai_tambah(Request $request){
@@ -36,12 +43,14 @@ class adminController extends Controller
         $this->validate(request(),[
             'nip'=>'required|unique:karyawans',
             'nama'=>'required',
-            'id_jabatan'=>'required'
+            'pangkat_id'=>'required',
+            'jabatan_id'=>'required'
         ]);
 
         $Karyawan = new Karyawan;
 
-        $Karyawan->id_jabatan   = $request->id_jabatan;
+        $Karyawan->pangkat_id   = $request->pangkat_id;
+        $Karyawan->jabatan_id   = $request->jabatan_id;
         $Karyawan->nip          = $request->nip;
         $Karyawan->nama         = $request->nama;
         $Karyawan->save();
@@ -133,6 +142,57 @@ class adminController extends Controller
         return redirect(route('jabatan_index'))->with('hapus', 'Data jabatan Berhasil di hapus');
     }//fungsi menghapus data jabatan
 
+    //pangkat
+    public function pangkat_index(){
+        $Pangkat = Pangkat::all();
+        return view('admin.pangkat_data',compact('Pangkat'));
+    }
+
+    public function pangkat_tambah(Request $request){
+
+        $this->validate(request(),[
+            'kode_pangkat'=>'required|unique:pangkats',
+            'pangkat'=>'required|unique:pangkats',
+        ]);
+
+        $Pangkat = new Pangkat;
+
+        $Pangkat->kode_pangkat  = $request->kode_pangkat;
+        $Pangkat->pangkat       = $request->pangkat;
+        $Pangkat->save();
+
+        return redirect(route('pangkat_index'))->with('sukses', 'Data pangkat '.$request->pangkat.' Berhasil di Tambahkan');
+    }//fungsi menambahkan data pangkat
+
+    public function pangkat_edit($id){
+        $id = IDCrypt::Decrypt($id);
+        $Pangkat = Pangkat::findOrFail($id);
+        return view('admin.pangkat_edit',['Pangkat' => $Pangkat]);
+    }
+
+    public function pangkat_update(Request $request, $id){
+        $id = IDCrypt::Decrypt($id);
+        $Pangkat = Pangkat::findOrFail($id);
+
+         $this->validate(request(),[
+            'kode_pangkat'=>'required',
+            'pangkat'=>'required'
+        ]);
+
+        $Pangkat->kode_pangkat = $request->kode_pangkat;
+        $Pangkat->pangkat = $request->pangkat;
+        $Pangkat->update();
+        return redirect(route('pangkat_index'))->with('ubah', 'Data Pangkat '.$request->pangkat.' Berhasil di ubah');
+    }
+
+    public function pangkat_hapus($id){
+        $id = IDCrypt::Decrypt($id);
+        $Pangkat=Pangkat::findOrFail($id);
+        $Pangkat->delete();
+
+        return redirect(route('pangkat_index'))->with('hapus', 'Data pangkat Berhasil di hapus');
+    }//fungsi menghapus data pangkat
+
     //Anggaran
     public function anggaran_index(){
         $Anggaran = Anggaran::all();
@@ -188,6 +248,57 @@ class adminController extends Controller
 
         return redirect(route('anggaran_index'))->with('hapus', 'Data Anggaran Berhasil di hapus');
     }//fungsi menghapus data anggaran
+
+    //kegiatan
+    public function kegiatan_index(){
+        $Kegiatan = Kegiatan::all();
+        return view('admin.kegiatan_data',compact('Kegiatan'));
+    }
+
+    public function kegiatan_tambah(Request $request){
+
+        $this->validate(request(),[
+            'kode_kegiatan'=>'required|unique:kegiatans',
+            'kegiatan'=>'required|unique:kegiatans',
+        ]);
+
+        $Kegiatan = new Kegiatan;
+
+        $Kegiatan->kode_kegiatan  = $request->kode_kegiatan;
+        $Kegiatan->kegiatan       = $request->kegiatan;
+        $Kegiatan->save();
+
+        return redirect(route('kegiatan_index'))->with('sukses', 'Data kegiatan '.$request->kegiatan.' Berhasil di Tambahkan');
+    }//fungsi menambahkan data kegiatan
+
+    public function kegiatan_edit($id){
+        $id = IDCrypt::Decrypt($id);
+        $Kegiatan = Kegiatan::findOrFail($id);
+        return view('admin.kegiatan_edit',['Kegiatan' => $Kegiatan]);
+    }
+
+    public function kegiatan_update(Request $request, $id){
+        $id = IDCrypt::Decrypt($id);
+        $Kegiatan = Kegiatan::findOrFail($id);
+
+         $this->validate(request(),[
+            'kode_kegiatan'=>'required',
+            'kegiatan'=>'required'
+        ]);
+
+        $Kegiatan->kode_kegiatan = $request->kode_kegiatan;
+        $Kegiatan->kegiatan = $request->kegiatan;
+        $Kegiatan->update();
+        return redirect(route('kegiatan_index'))->with('ubah', 'Data Kegiatan '.$request->kegiatan.' Berhasil di ubah');
+    }
+
+    public function kegiatan_hapus($id){
+        $id = IDCrypt::Decrypt($id);
+        $Kegiatan=Kegiatan::findOrFail($id);
+        $Kegiatan->delete();
+
+        return redirect(route('kegiatan_index'))->with('hapus', 'Data kegiatan Berhasil di hapus');
+    }//fungsi menghapus data kegiatan
 
     //provinsi
     public function provinsi_index(){
@@ -413,6 +524,244 @@ class adminController extends Controller
         $kelurahan->delete();
         return redirect(route('kelurahan_index'))->with('hapus', 'Data Berhasil di Hapus');
     } //menghapus data kelurahan
+
+    //tempat tujuan
+    public function tujuan_index(){
+        $Tujuan = Tujuan::all();
+        $Provinsi = Provinsi::all();
+        // $Provinsis = Provinsi::all()->pluck('provinsi', 'id')->prepend(trans('global.pleaseSelect'), '');
+        // $Kabupaten = Kabupaten::all();
+        // $Kecamatan = Kecamatan::all();
+        // $Kelurahan = Kelurahan::all();
+
+        return view('admin.tujuan_data',compact('Tujuan','Provinsi'));
+        // return view('admin.tujuan_data',compact('Tujuan','Provinsi','Kabupaten','Kecamatan','Kelurahan'));
+    }//menampilkan data tujuan
+
+//     public function getKabupatenList(Request $request){
+
+//     if (!$request->provinsi_id) {
+//         $html = '<option value="">'.trans('global.pleaseSelect').'</option>';
+//     } else {
+//         $html = '';
+//         $kabupatens = Kabupaten::where('provinsi_id', $request->provinsi_id)->get();
+//         foreach ($kabupatens as $k) {
+//             $html .= '<option value="'.$k->id.'">'.$k->kabupaten.'</option>';
+//         }
+//     }
+
+//     return response()->json(['html' => $html]);
+// }
+
+    public function getKabupatenList(Request $request){
+        $Kabupaten = Kabupaten::all()
+            ->where("provinsi_id",$request->provinsi_id)
+            ->pluck("kabupaten","id");
+            return response()->json($Kabupaten);
+    }//get kabupaten list
+
+    public function getKecamatanList(Request $request){
+        $Kecamatan = Kecamatan::all()
+            ->where("kabupaten_id",$request->kabupaten_id)
+            ->pluck("kecamatan","id");
+            return response()->json($Kecamatan);
+    }//get kabupaten list
+
+    public function getKelurahanList(Request $request){
+        $Kelurahan = Kelurahan::all()
+            ->where("kecamatan_id",$request->kecamatan_id)
+            ->pluck("kelurahan","id");
+            return response()->json($Kelurahan);
+    }//get kabupaten list
+
+
+    public function tujuan_tambah(Request $request){
+
+        $this->validate(request(),[
+          'kode_tujuan'=>'required|unique:tujuans',
+          'tujuan'=>'required|unique:tujuans',
+          'provinsi_id'=>'required',
+          'kabupaten_id'=>'required',
+          'kecamatan_id'=>'required',
+          'kelurahan_id'=>'required'
+
+        ]);
+
+        $Tujuan = new Tujuan;
+        $Tujuan->kode_tujuan= $request->kode_tujuan;
+        $Tujuan->tujuan= $request->tujuan;
+        $Tujuan->provinsi_id= $request->provinsi_id;
+        $Tujuan->kabupaten_id= $request->kabupaten_id;
+        $Tujuan->kecamatan_id= $request->kecamatan_id;
+        $Tujuan->kelurahan_id= $request->kelurahan_id;
+
+        $Tujuan->save();
+        
+          return redirect(route('tujuan_index'))->with('sukses', 'Data tujuan '.$request->tujuan.' Berhasil di Tambahkan');
+      }//menambah data tujuan
+
+      public function tujuan_edit($id){
+        $id = IDCrypt::Decrypt($id);
+        $Tujuan = Tujuan::findOrFail($id);
+        $Provinsi = Provinsi::all();
+        $Kabupaten = Kabupaten::all();
+        $Kecamatan = Kecamatan::all();
+        $Kelurahan = Kelurahan::all();
+
+        return view('admin.tujuan_edit',compact('Tujuan','Provinsi','Kabupaten','Kecamatan','Kelurahan'));
+       }//menampikan halaman edit tujuan
+
+       public function tujuan_update(Request $request, $id){
+        $id = IDCrypt::Decrypt($id);
+        $Tujuan = Tujuan::findOrFail($id);
+
+        $this->validate(request(),[
+           'kode_tujuan'=>'required',
+           'tujuan'=>'required',
+           'provinsi_id'=>'required',
+           'kabupaten_id'=>'required',
+           'kecamatan_id'=>'required',
+           'kelurahan_id'=>'required'
+       ]);
+       $Tujuan->provinsi_id= $request->provinsi_id;
+       $Tujuan->kabupaten_id= $request->kabupaten_id;
+       $Tujuan->kecamatan_id= $request->kecamatan_id;
+       $Tujuan->kelurahan_id= $request->kelurahan_id;
+       $Tujuan->kode_tujuan= $request->kode_tujuan;
+       $Tujuan->tujuan= $request->tujuan;
+       $Tujuan->update();
+       return redirect(route('tujuan_index'))->with('ubah', 'Data tujuan '.$request->tujuan.' Berhasil di Ubah');
+      }//mengubah data tujuan
+
+
+       public function tujuan_hapus($id){
+        $id = IDCrypt::Decrypt($id);
+        $tujuan=tujuan::findOrFail($id);
+        $tujuan->delete();
+        return redirect(route('tujuan_index'))->with('hapus', 'Data Berhasil di Hapus');
+    } //menghapus data tujuan
+
+    //jenis transportasi
+    public function transportasi_index(){
+        $Transportasi = Transportasi::all();
+
+        return view('admin.transportasi_data',compact('Transportasi'));
+    }//menampilkan data transportasi
+
+
+    public function transportasi_tambah(Request $request){
+
+        $this->validate(request(),[
+          'kode_transportasi'=>'required|unique:transportasis',
+          'transportasi'=>'required|unique:transportasis'
+
+        ]);
+
+        $Transportasi = new Transportasi;
+        $Transportasi->kode_transportasi= $request->kode_transportasi;
+        $Transportasi->transportasi= $request->transportasi;
+
+        $Transportasi->save();
+        
+          return redirect(route('transportasi_index'))->with('sukses', 'Data transportasi '.$request->transportasi.' Berhasil di Tambahkan');
+      }//menambah data transportasi
+
+      public function transportasi_edit($id){
+        $id = IDCrypt::Decrypt($id);
+        $Transportasi = Transportasi::findOrFail($id);
+        $Kecamatan = Kecamatan::All();
+
+        return view('admin.transportasi_edit',compact('Transportasi','Kecamatan'));
+       }//menampikan halaman edit transportasi
+
+       public function transportasi_update(Request $request, $id){
+        $id = IDCrypt::Decrypt($id);
+        $Transportasi = Transportasi::findOrFail($id);
+
+        $this->validate(request(),[
+           'kode_transportasi'=>'required|unique:transportasis',
+           'transportasi'=>'required|unique:transportasis',
+           'kecamatan_id'=>'required'
+       ]);
+       $Transportasi->kecamatan_id= $request->kecamatan_id;
+       $Transportasi->kode_transportasi= $request->kode_transportasi;
+       $Transportasi->transportasi= $request->transportasi;
+       $Transportasi->update();
+       return redirect(route('transportasi_index'))->with('ubah', 'Data transportasi '.$request->transportasi.' Berhasil di Ubah');
+      }//mengubah data transportasi
+
+
+       public function transportasi_hapus($id){
+        $id = IDCrypt::Decrypt($id);
+        $transportasi=transportasi::findOrFail($id);
+        $transportasi->delete();
+        return redirect(route('transportasi_index'))->with('hapus', 'Data Berhasil di Hapus');
+    } //menghapus data transportasi
+
+    //sppd
+    public function sppd_index(){
+        
+        $Sppd = Sppd::all();
+        $Kecamatan = Kecamatan::all();
+
+        
+        return view('admin.sppd_data',compact('Sppd','Kecamatan'));
+    }//menampilkan data sppd
+
+
+    public function sppd_tambah(Request $request){
+
+        $this->validate(request(),[
+          'kode_sppd'=>'required|unique:sppds',
+          'sppd'=>'required|unique:sppds',
+          'kecamatan_id'=>'required'
+
+        ]);
+
+        
+        $Sppd = new Sppd;
+        $Sppd->kode_sppd= $request->kode_sppd;
+        $Sppd->sppd= $request->sppd;
+        $Sppd->kecamatan_id= $request->kecamatan_id;
+
+        $Sppd->save();
+        
+          return redirect(route('sppd_index'))->with('sukses', 'Data sppd '.$request->sppd.' Berhasil di Tambahkan');
+      }//menambah data sppd
+
+      public function sppd_edit($id){
+        $id = IDCrypt::Decrypt($id);
+        
+        $Sppd = Sppd::findOrFail($id);
+        $Kecamatan = Kecamatan::All();
+
+        
+        return view('admin.sppd_edit',compact('Sppd','Kecamatan'));
+       }//menampikan halaman edit sppd
+
+       public function sppd_update(Request $request, $id){
+        $id = IDCrypt::Decrypt($id);
+        
+        $Sppd = Sppd::findOrFail($id);
+
+        $this->validate(request(),[
+           'kode_sppd'=>'required|unique:sppds',
+           'sppd'=>'required|unique:sppds',
+           'kecamatan_id'=>'required'
+       ]);
+       $Sppd->kecamatan_id= $request->kecamatan_id;
+       $Sppd->kode_sppd= $request->kode_sppd;
+       $Sppd->sppd= $request->sppd;
+       $Sppd->update();
+       return redirect(route('sppd_index'))->with('ubah', 'Data sppd '.$request->sppd.' Berhasil di Ubah');
+      }//mengubah data sppd
+
+       public function sppd_hapus($id){
+        $id = IDCrypt::Decrypt($id);
+        $sppd=sppd::findOrFail($id);
+        $sppd->delete();
+        return redirect(route('sppd_index'))->with('hapus', 'Data Berhasil di Hapus');
+    } //menghapus data sppd
 
 
 }

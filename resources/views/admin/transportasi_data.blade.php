@@ -15,54 +15,48 @@
                 <!-- DataTales Example -->
                 <div class="card shadow mb-4">
                   <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Data Karyawan</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Data Transportasi</h6>
                   </div>
                   <div class="card-body">
-                @include('layouts.alert_sukses')
-                @include('layouts.alert_ubah')
-                @include('layouts.alert_hapus')
-                @include('layouts.errors')
+                        @include('layouts.alert_sukses')
+                        @include('layouts.alert_ubah')
+                        @include('layouts.alert_hapus')
+                        @include('layouts.errors')
                     <div class="table-responsive">
                       <table class="table table-bordered" id="myTable" width="100%" cellspacing="0">
                         <thead>
                           <tr>
                             <th>No</th>
-                            <th>NIP</th>
-                            <th>Nama</th>
-                            <th>Pangkat / Golongan</th>
-                            <th>Jabatan</th>
+                            <th>Kode Transportasi</th>
+                            <th>Jenis Transportasi</th>
                             <th>Action</th>
                           </tr>
                         </thead>
                         <tfoot>
                           <tr>
                             <th>No</th>
-                            <th>NIP</th>
-                            <th>Nama</th>
-                            <th>Pangkat / Golongan</th>
-                            <th>Jabatan</th>
+                            <th>Kode Transportasi</th>
+                            <th>Nama Transportasi</th>
                             <th>Action</th>
                           </tr>
                         </tfoot>
                         <tbody>
-                        @foreach($Karyawan as $p)
+                            @foreach($Transportasi as $j)
                                 <tr>
                                     @php
                                     $no=1;
                                     @endphp
                                 <td>{{ $no++ }}</td>
-                                <td>{{ $p->nip }}</td>
-                                <td>{{ $p->nama }}</td>
-                                <td>{{ $p->pangkat->pangkat }}</td>
-                                <td>{{ $p->jabatan->jabatan }}</td>
+                                <td>{{ $j->kode_transportasi }}</td>
+                                <td>{{ $j->transportasi }}</td>
                                     <td class="text-center">
                                         <a href="" class="btn btn-sm btn-primary " >Info</a>
-                                    <a href="{{route('pegawai_edit', ['id' => IDCrypt::Encrypt( $p->id)])}}" class="btn btn-sm btn-info " >Edit</a>
-                                        <a href="{{route('pegawai_hapus', ['id' => IDCrypt::Encrypt( $p->id)])}}" class="btn btn-sm btn-danger" >Hapus</a>
+                                    <a href="{{route('transportasi_edit', ['id' => IDCrypt::Encrypt( $j->id)])}}" class="btn btn-sm btn-info " >Edit</a>
+                                        <a href="{{route('transportasi_hapus', ['id' => IDCrypt::Encrypt( $j->id)])}}" class="btn btn-sm btn-danger" >Hapus</a>
+
                                     </td>
-                                    
                                 </tr>
-                        @endforeach
+                                @endforeach
                         </tbody>
                       </table>
                     </div>
@@ -85,30 +79,14 @@
           <form  method="post" action="">
 
             <div class="form-group">
-              <input type="text" name="nip"  class="form-control" placeholder="NIP"/>
+              <input type="text" name="kode_transportasi"  class="form-control" placeholder="Kode Transportasi"/>
             </div>
             <div class="form-group">
-                <input type="text" name="nama"  class="form-control" placeholder="Nama Lengkap"/>
+                <input type="text" name="transportasi"  class="form-control" placeholder="Nama Transportasi"/>
             </div>
-            <div class="form-group">
-                <p>Pangkat</p>
-                <select class="form-control" name="pangkat_id">
-                  @foreach($Pangkat as $j)
-                  <option value="{{$j->id}}">{{ $j->pangkat}}</option>
-                  @endforeach
-                </select>
-             </div>
-             <div class="form-group">
-              <p>Jabatan</p>
-              <select class="form-control" name="jabatan_id">
-                @foreach($Jabatan as $j)
-                <option value="{{$j->id}}">{{ $j->jabatan}}</option>
-                @endforeach
-              </select>
-           </div>
             <div class="form-group">
              <div class="text-right">
-               <input class="btn btn-primary" type="submit" name="submit" value="Submit">
+               <input class="btn btn-primary" type="submit" name="submit" value="Simpan">
                {{csrf_field() }}
              </div>
            </div>

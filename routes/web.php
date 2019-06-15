@@ -45,6 +45,18 @@ Route::put('/jabatan/edit/{id}','adminController@jabatan_update')
 Route::get('/jabatan/hapus/{id}','adminController@jabatan_hapus')
 ->name('jabatan_hapus');
 
+//Pangkat
+Route::get('/pangkat','adminController@pangkat_index')
+->name('pangkat_index');
+Route::post('/pangkat','adminController@pangkat_tambah')
+->name('pangkat_tambah');
+Route::get('/pangkat/edit/{id}','adminController@pangkat_edit')
+->name('pangkat_edit');
+Route::put('/pangkat/edit/{id}','adminController@pangkat_update')
+->name('pangkat_update');
+Route::get('/pangkat/hapus/{id}','adminController@pangkat_hapus')
+->name('pangkat_hapus');
+
 //Anggaran
 Route::get('/anggaran','adminController@anggaran_index')
 ->name('anggaran_index');
@@ -56,6 +68,30 @@ Route::put('/anggaran/edit/{id}','adminController@anggaran_update')
 ->name('anggaran_update');
 Route::get('/anggaran/hapus/{id}','adminController@anggaran_hapus')
 ->name('anggaran_hapus');
+
+//Kegiatan
+Route::get('/kegiatan','adminController@kegiatan_index')
+->name('kegiatan_index');
+Route::post('/kegiatan','adminController@kegiatan_tambah')
+->name('kegiatan_tambah');
+Route::get('/kegiatan/edit/{id}','adminController@kegiatan_edit')
+->name('kegiatan_edit');
+Route::put('/kegiatan/edit/{id}','adminController@kegiatan_update')
+->name('kegiatan_update');
+Route::get('/kegiatan/hapus/{id}','adminController@kegiatan_hapus')
+->name('kegiatan_hapus');
+
+//Transportasi
+Route::get('/transportasi','adminController@transportasi_index')
+->name('transportasi_index');
+Route::post('/transportasi','adminController@transportasi_tambah')
+->name('transportasi_tambah');
+Route::get('/transportasi/edit/{id}','adminController@transportasi_edit')
+->name('transportasi_edit');
+Route::put('/transportasi/edit/{id}','adminController@transportasi_update')
+->name('transportasi_update');
+Route::get('/transportasi/hapus/{id}','adminController@transportasi_hapus')
+->name('transportasi_hapus');
 
 //provinsi
 Route::get('/provinsi','adminController@provinsi_index')
@@ -108,6 +144,34 @@ Route::put('/kelurahan/edit/{id}','adminController@kelurahan_update')
 Route::get('/kelurahan/hapus/{id}','adminController@kelurahan_hapus')
 ->name('kelurahan_hapus');
 // });
+
+//tujuan
+Route::get('/tujuan','adminController@tujuan_index')
+->name('tujuan_index');
+Route::get('get-kabupaten-list','adminController@getKabupatenList');
+Route::get('get-kecamatan-list','adminController@getKecamatanList');
+Route::get('get-kelurahan-list','adminController@getKelurahanList');
+Route::post('/tujuan','adminController@tujuan_tambah')
+->name('tujuan_tambah');
+Route::get('/tujuan/edit/{id}','adminController@tujuan_edit')
+->name('tujuan_edit');
+Route::put('/tujuan/edit/{id}','adminController@tujuan_update')
+->name('tujuan_update');
+Route::get('/tujuan/hapus/{id}','adminController@tujuan_hapus')
+->name('tujuan_hapus');
+// });
+
+//sppd
+Route::get('/sppd','adminController@sppd_index')
+->name('sppd_index');
+Route::post('/sppd','adminController@sppd_tambah')
+->name('sppd_tambah');
+Route::get('/sppd/edit/{id}','adminController@sppd_edit')
+->name('sppd_edit');
+Route::put('/sppd/edit/{id}','adminController@sppd_update')
+->name('sppd_update');
+Route::get('/sppd/hapus/{id}','adminController@sppd_hapus')
+->name('sppd_hapus');
 
 Auth::routes();
 

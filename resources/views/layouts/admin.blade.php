@@ -18,6 +18,8 @@
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script>
+  <script src="{{ asset('js/jquery.js') }}"></script>
+  <script src="{{ asset('js/jquery.min.js') }}"></script>
   <!-- Custom styles for this template-->
 
     <!-- Styles -->
@@ -60,9 +62,11 @@
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Master Data:</h6>
+            <a class="collapse-item" href="{{route('pangkat_index')}}">Data Pangkat</a>
             <a class="collapse-item" href="{{route('jabatan_index')}}">Data Jabatan</a>
             <a class="collapse-item" href="{{route('pegawai_index')}}">Data Pegawai</a>
             <a class="collapse-item" href="{{route('anggaran_index')}}">Data Anggaran</a>
+            <a class="collapse-item" href="{{route('kegiatan_index')}}">Data Kegiatan</a>
           </div>
         </div>
       </li>
@@ -78,8 +82,14 @@
             <a class="collapse-item" href="{{ route('kabupaten_index') }}">Data Kabupaten / Kota</a>
             <a class="collapse-item" href="{{ route('kecamatan_index') }}">Data Kecamatan</a>
             <a class="collapse-item" href="{{ route('kelurahan_index') }}">Data Kelurahan</a>
+            <a class="collapse-item" href="{{ route('tujuan_index') }}">Data Tempat / Tujuan</a>
           </div>
         </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{ route('transportasi_index') }}">
+        <i class="fa fa-list-ul"></i>
+      <span>Data Jenis Transportasi</span></a>
       </li>
               <li class="nav-item">
                 <a class="nav-link" href="">
