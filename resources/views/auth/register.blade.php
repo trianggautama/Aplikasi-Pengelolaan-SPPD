@@ -52,7 +52,8 @@
               </div>
               <button type="submit" class="btn btn-primary btn-user">
                 Register Account
-              </a>
+                </button>
+
               <hr>
             </form>
             <hr>
