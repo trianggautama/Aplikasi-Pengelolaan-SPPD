@@ -40,7 +40,7 @@
       <!-- Sidebar - Brand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/admin">
         <div class="sidebar-brand-icon ">
-                <img src="/images/pemko.png" width="35" height="35" class="d-inline-block align-top" alt="">
+                <img src="{{ asset('/images/pemko.png') }}" width="35" height="35" class="d-inline-block align-top" alt="">
         </div>
         <div class="sidebar-brand-text mx-2">Aplikasi SPPD</div>
       </a>

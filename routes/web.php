@@ -172,6 +172,9 @@ Route::put('/sppd/edit/{id}','adminController@sppd_update')
 ->name('sppd_update');
 Route::get('/sppd/hapus/{id}','adminController@sppd_hapus')
 ->name('sppd_hapus');
+Route::get('/cetak_sppd','adminController@sppd_cetak')
+->name('sppd_cetak');
+
 
 Auth::routes();
 

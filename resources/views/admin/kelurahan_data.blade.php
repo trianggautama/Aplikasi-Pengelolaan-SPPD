@@ -5,11 +5,11 @@
 @section('content')
 <div class="mb-3">
         <div class="container-fluid">
-
                 <!-- Page Heading -->
-                <h1 class="h3 mb-2 text-gray-800">Tables</h1>
-                <a href="##tambahdata" data-toggle="modal"data-target="#tambahdata" class="btn btn-sm btn-success" style="margin-bottom:15px;">Tambah Data  </a>
-
+                <h1 class="h3 mb-2 text-gray-800">Tabel Data</h1>
+                <div class="text-right">
+                <a href="##tambahdata" data-toggle="modal"data-target="#tambahdata" class="btn btn-sm btn-success" style="margin-bottom:15px;"> + Tambah Data  </a>
+                </div>
                 <!-- DataTales Example -->
                 <div class="card shadow mb-4">
                   <div class="card-header py-3">

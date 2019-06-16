@@ -763,5 +763,10 @@ class adminController extends Controller
         return redirect(route('sppd_index'))->with('hapus', 'Data Berhasil di Hapus');
     } //menghapus data sppd
 
+    public function sppd_cetak(){
+       
+        
+        return view('laporan.sppd');
+       }//mencetak  sppd
 
 }
