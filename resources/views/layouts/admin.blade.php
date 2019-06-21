@@ -92,7 +92,7 @@
       <span>Data Jenis Transportasi</span></a>
       </li>
       <li class="nav-item">
-            <a class="nav-link" href="">
+            <a class="nav-link" href="{{ route('pejabat_index') }}">
             <i class="far fa-envelope"></i>
           <span>Pejabat Struktural</span></a>
           </li>
