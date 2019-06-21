@@ -702,10 +702,22 @@ class adminController extends Controller
     public function sppd_index(){
         
         $Sppd = Sppd::all();
+        $Pangkat = Pangkat::all();
+        $Jabatan = Jabatan::all();
+        $Karyawan = Karyawan::all();
+        $Anggaran = Anggaran::all();
+        $Kegiatan = Kegiatan::all();
+        $Provinsi = Provinsi::all();
+        $Kabupaten = Kabupaten::all();
         $Kecamatan = Kecamatan::all();
+        $Kelurahan = Kelurahan::all();
+        $Tujuan = Tujuan::all();
+        $Transportasi = Transportasi::all();
+        $Pejabat = Pejabat::all();
+        
 
         
-        return view('admin.sppd_data',compact('Sppd','Kecamatan'));
+        return view('admin.sppd_data',compact('Sppd','Pangkat','Jabatan','Karyawan','Anggaran','Kegiatan','Provinsi','Kabupaten','Kecamatan','Kelurahan','Tujuan','Transportasi','Pejabat'));
     }//menampilkan data sppd
 
 
@@ -733,7 +745,7 @@ class adminController extends Controller
         $id = IDCrypt::Decrypt($id);
         
         $Sppd = Sppd::findOrFail($id);
-        $Kecamatan = Kecamatan::All();
+        $Kecamatan = Kecamatan::all();
 
         
         return view('admin.sppd_edit',compact('Sppd','Kecamatan'));
