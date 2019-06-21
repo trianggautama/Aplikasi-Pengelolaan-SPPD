@@ -161,6 +161,22 @@ Route::get('/tujuan/hapus/{id}','adminController@tujuan_hapus')
 ->name('tujuan_hapus');
 // });
 
+//pejabat
+Route::get('/pejabat','adminController@pejabat_index')
+->name('pejabat_index');
+Route::get('get-kabupaten-list','adminController@getKabupatenList');
+Route::get('get-kecamatan-list','adminController@getKecamatanList');
+Route::get('get-kelurahan-list','adminController@getKelurahanList');
+Route::post('/pejabat','adminController@pejabat_tambah')
+->name('pejabat_tambah');
+Route::get('/pejabat/edit/{id}','adminController@pejabat_edit')
+->name('pejabat_edit');
+Route::put('/pejabat/edit/{id}','adminController@pejabat_update')
+->name('pejabat_update');
+Route::get('/pejabat/hapus/{id}','adminController@pejabat_hapus')
+->name('pejabat_hapus');
+// });
+
 //sppd
 Route::get('/sppd','adminController@sppd_index')
 ->name('sppd_index');
