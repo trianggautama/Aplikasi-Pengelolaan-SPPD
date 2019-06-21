@@ -91,15 +91,15 @@
         <i class="fa fa-list-ul"></i>
       <span>Data Jenis Transportasi</span></a>
       </li>
-              <li class="nav-item">
-                <a class="nav-link" href="">
-                 <i class="fas fa-list-ul"></i>
-                 <span>Data SPPD</span></a>
-              </li>
       <li class="nav-item">
             <a class="nav-link" href="">
             <i class="far fa-envelope"></i>
           <span>Pejabat Struktural</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('sppd_index') }}">
+             <i class="fas fa-list-ul"></i>
+             <span>Data SPPD</span></a>
           </li>
       <!-- Nav Item - Utilities Collapse Menu -->
 
