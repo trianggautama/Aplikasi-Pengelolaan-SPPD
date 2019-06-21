@@ -16,6 +16,7 @@ Use App\Kabupaten;
 Use App\Kelurahan;
 Use App\Tujuan;
 Use App\Transportasi;
+Use App\Pejabat;
 
 use Illuminate\Http\Request;
 
@@ -697,6 +698,68 @@ class adminController extends Controller
         $transportasi->delete();
         return redirect(route('transportasi_index'))->with('hapus', 'Data Berhasil di Hapus');
     } //menghapus data transportasi
+
+    //jenis pejabat
+    public function pejabat_index(){
+        $Pejabat = Pejabat::all();
+
+        return view('admin.pejabat_data',compact('Pejabat'));
+    }//menampilkan data pejabat
+
+
+    public function pejabat_tambah(Request $request){
+
+        $this->validate(request(),[
+          'kode_pejabat'=>'required|unique:pejabats',
+          'nip'=>'required',
+          'nama'=>'required',
+          'jabatan'=>'required'
+
+        ]);
+
+        $Pejabat = new Pejabat;
+        $Pejabat->kode_pejabat= $request->kode_pejabat;
+        $Pejabat->nip= $request->nip;
+        $Pejabat->nama= $request->nama;
+        $Pejabat->jabatan= $request->jabatan;
+
+        $Pejabat->save();
+        
+          return redirect(route('pejabat_index'))->with('sukses', 'Data pejabat '.$request->pejabat.' Berhasil di Tambahkan');
+      }//menambah data pejabat
+
+      public function pejabat_edit($id){
+        $id = IDCrypt::Decrypt($id);
+        $Pejabat = Pejabat::findOrFail($id);
+
+        return view('admin.pejabat_edit',compact('Pejabat'));
+       }//menampikan halaman edit pejabat
+
+       public function pejabat_update(Request $request, $id){
+        $id = IDCrypt::Decrypt($id);
+        $Pejabat = Pejabat::findOrFail($id);
+
+        $this->validate(request(),[
+           'kode_pejabat'=>'required',
+           'nip'=>'required',
+           'nama'=>'required',
+           'jabatan'=>'required'
+       ]);
+       $Pejabat->kode_pejabat= $request->kode_pejabat;
+       $Pejabat->nip= $request->nip;
+       $Pejabat->nama= $request->nama;
+       $Pejabat->jabatan= $request->jabatan;
+       $Pejabat->update();
+       return redirect(route('pejabat_index'))->with('ubah', 'Data pejabat '.$request->pejabat.' Berhasil di Ubah');
+      }//mengubah data pejabat
+
+
+       public function pejabat_hapus($id){
+        $id = IDCrypt::Decrypt($id);
+        $pejabat=pejabat::findOrFail($id);
+        $pejabat->delete();
+        return redirect(route('pejabat_index'))->with('hapus', 'Data Berhasil di Hapus');
+    } //menghapus data pejabat
 
     //sppd
     public function sppd_index(){
