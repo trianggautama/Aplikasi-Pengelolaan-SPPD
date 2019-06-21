@@ -653,8 +653,8 @@ class adminController extends Controller
     public function transportasi_tambah(Request $request){
 
         $this->validate(request(),[
-          'kode_transportasi'=>'required|unique:transportasis',
-          'transportasi'=>'required|unique:transportasis'
+          'kode_transportasi'=>'required',
+          'transportasi'=>'required'
 
         ]);
 
@@ -670,9 +670,8 @@ class adminController extends Controller
       public function transportasi_edit($id){
         $id = IDCrypt::Decrypt($id);
         $Transportasi = Transportasi::findOrFail($id);
-        $Kecamatan = Kecamatan::All();
 
-        return view('admin.transportasi_edit',compact('Transportasi','Kecamatan'));
+        return view('admin.transportasi_edit',compact('Transportasi'));
        }//menampikan halaman edit transportasi
 
        public function transportasi_update(Request $request, $id){
@@ -680,11 +679,9 @@ class adminController extends Controller
         $Transportasi = Transportasi::findOrFail($id);
 
         $this->validate(request(),[
-           'kode_transportasi'=>'required|unique:transportasis',
-           'transportasi'=>'required|unique:transportasis',
-           'kecamatan_id'=>'required'
+            'kode_transportasi'=>'required',
+            'transportasi'=>'required'
        ]);
-       $Transportasi->kecamatan_id= $request->kecamatan_id;
        $Transportasi->kode_transportasi= $request->kode_transportasi;
        $Transportasi->transportasi= $request->transportasi;
        $Transportasi->update();

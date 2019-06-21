@@ -13,7 +13,7 @@
                 <!-- DataTales Example -->
                 <div class="card shadow mb-4">
                   <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Data Kelurahan</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Data Sppd</h6>
                   </div>
                   <div class="card-body">
                     <div class="table-responsive">
@@ -21,35 +21,45 @@
                         <thead>
                           <tr>
                             <th>No</th>
-                            <th>Kode Kelurahan</th>
-                            <th>Kelurahan</th>
-                            <th>Kecamatan</th>
+                            <th>Kode Sppd</th>
+                            <th>Nama Karyawan</th>
+                            <th>Anggaran</th>
+                            <th>Kegiatan</th>
+                            <th>Tujuan</th>
+                            <th>Transportasi</th>
                             <th>Action</th>
                           </tr>
                         </thead>
                         <tfoot>
                           <tr>
                             <th>No</th>
-                            <th>Kode Kelurahan</th>
-                            <th>Kelurahan</th>
-                            <th>Kecamatan</th>
+                            <th>Kode Sppd</th>
+                            <th>Nama Karyawan</th>
+                            <th>Anggaran</th>
+                            <th>Kegiatan</th>
+                            <th>Tujuan</th>
+                            <th>Transportasi</th>
                             <th>Action</th>
                           </tr>
                         </tfoot>
                         <tbody>
-                            @foreach($Kelurahan as $p)
+                            @foreach($Sppd as $p)
                             <tr>
                                 @php
                                 $no=1;
                                 @endphp   
                             <td>{{ $no++ }}</td>
-                            <td>{{ $p->kode_kelurahan }}</td>
-                            <td>{{ $p->kelurahan }}</td>
-                            <td>{{ $p->kecamatan->kecamatan }}</td>
+                            <td>{{ $p->kode_sppd }}</td>
+                            <td>{{ $p->karyawan->nama }}</td>
+                            <td>{{ $p->anggaran->pembebanan }}</td>
+                            <td>{{ $p->kegiatan->kegiatan }}</td>
+                            <td>{{ $p->tujuan->tujuan }}</td>
+                            <td>{{ $p->kegiatan->kegiatan }}</td>
+                            <td>{{ $p->transportasi->transportasi }}</td>
                                 <td class="text-center">
                                     <a href="" class="btn btn-sm btn-primary " >Info</a>
-                                    <a href="{{route('kelurahan_edit', ['id' => IDCrypt::Encrypt( $p->id)])}}" class="btn btn-sm btn-info " >Edit</a>
-                                    <a href="{{route('kelurahan_hapus', ['id' => IDCrypt::Encrypt( $p->id)])}}" class="btn btn-sm btn-danger" >Hapus</a>
+                                    <a href="{{route('sppd_edit', ['id' => IDCrypt::Encrypt( $p->id)])}}" class="btn btn-sm btn-info " >Edit</a>
+                                    <a href="{{route('sppd_hapus', ['id' => IDCrypt::Encrypt( $p->id)])}}" class="btn btn-sm btn-danger" >Hapus</a>
 
                                 </td>
                             </tr>
@@ -76,10 +86,10 @@
           <form  method="post" action="">
 
             <div class="form-group">
-              <input type="text" name="kode_kelurahan"  class="form-control" placeholder="Kode Kelurahan"/>
+              <input type="text" name="kode_sppd"  class="form-control" placeholder="Kode Sppd"/>
             </div>
             <div class="form-group">
-                <input type="text" name="kelurahan"  class="form-control" placeholder="Kelurahan"/>
+                <input type="text" name="sppd"  class="form-control" placeholder="Sppd"/>
             </div>
             <div class="form-group">
                 <p>Kecamatan</p>

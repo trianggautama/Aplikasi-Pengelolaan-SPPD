@@ -22,4 +22,18 @@ class Sppd extends Model
     public function kegiatan(){
         return $this->belongsTo('App\kegiatan', 'kegiatan_id');
       }    
+
+    public function tujuan(){
+        return $this->belongsTo('App\tujuan', 'tujuan_id');
+      }      
+
+    public function transportasi(){
+        return $this->belongsTo('App\transportasi', 'transportasi_id');
+      }    
+      
+    public function pejabat(){
+        return $this->belongsTo('App\pejabat', 'pejabat_id');
+      }      
 }
+
+
