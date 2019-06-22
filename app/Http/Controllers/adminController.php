@@ -776,7 +776,7 @@ class adminController extends Controller
         $Pejabat = Pejabat::all();
 
 
-        return view('admin.sppd_data',compact('Sppd'));
+        return view('admin.sppd_data',compact('Sppd','Karyawan','Anggaran','Kegiatan','Tujuan','Transportasi','Pejabat'));
         // return view('admin.sppd_data',compact('Sppd','Pangkat','Jabatan','Karyawan','Anggaran','Kegiatan','Provinsi','Kabupaten','Kecamatan','Kelurahan','Tujuan','Transportasi','Pejabat'));
     }//menampilkan data sppd
 
@@ -807,8 +807,6 @@ class adminController extends Controller
           'keterangan'=>'required',
 
         ]);
-
-
         $Sppd = new Sppd;
         $Sppd->kode_sppd= $request->kode_sppd;
         $Sppd->karyawan_id= $request->karyawan_id;
@@ -865,5 +863,14 @@ class adminController extends Controller
 
         return view('laporan.sppd');
        }//mencetak  sppd
+
+    public function sppd_filter_lokasi(){
+        $Tujuan = Tujuan::all();
+    return view('admin.sppd_filter_lokasi',compact('Tujuan'));
+    }//mencetak  sppd
+
+    public function sppd_filter_waktu(){
+    return view('admin.sppd_filter_waktu');
+    }//mencetak  sppd
 
 }

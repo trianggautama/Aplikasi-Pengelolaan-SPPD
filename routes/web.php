@@ -192,7 +192,10 @@ Route::get('/sppd/hapus/{id}','adminController@sppd_hapus')
 ->name('sppd_hapus');
 Route::get('/cetak_sppd','adminController@sppd_cetak')
 ->name('sppd_cetak');
-
+Route::get('/sppd_filter_lokasi','adminController@sppd_filter_lokasi')
+->name('sppd_filter_lokasi');
+Route::get('/sppd_filter_waktu','adminController@sppd_filter_waktu')
+->name('sppd_filter_waktu');
 
 Auth::routes();
 
