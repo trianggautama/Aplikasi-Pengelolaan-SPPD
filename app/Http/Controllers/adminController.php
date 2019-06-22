@@ -802,6 +802,9 @@ class adminController extends Controller
           'tujuan_id'=>'required',
           'transportasi_id'=>'required',
           'pejabat_id'=>'required',
+          'tgl_berangkat'=>'required',
+          'tgl_kembali'=>'required',
+          'keterangan'=>'required',
 
         ]);
 
@@ -814,6 +817,9 @@ class adminController extends Controller
         $Sppd->tujuan_id= $request->tujuan_id;
         $Sppd->transportasi_id= $request->transportasi_id;
         $Sppd->pejabat_id= $request->pejabat_id;
+        $Sppd->tgl_berangkat= $request->tgl_berangkat;
+        $Sppd->tgl_kembali= $request->tgl_kembali;
+        $Sppd->keterangan= $request->keterangan;
 
         $Sppd->save();
 

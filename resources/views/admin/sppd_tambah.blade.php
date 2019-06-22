@@ -44,12 +44,12 @@
     </select>
  </div>
  <div class="form-group">
-    <p>tanggal Berangkat</p>
-    <input type="date" class="form-control" name="tanggal_berangkat">
+    <p>Tanggal Berangkat</p>
+    <input type="date" class="form-control" name="tgl_berangkat">
  </div>
  <div class="form-group">
-    <p>tanggal Kembali</p>
-    <input type="date" class="form-control" name="tanggal_kembali">
+    <p>Tanggal Kembali</p>
+    <input type="date" class="form-control" name="tgl_kembali">
  </div>
  <div class="form-group">
     <p>Tujuan</p>
@@ -75,6 +75,10 @@
       @endforeach
     </select>
  </div>
+ <div class="form-group">
+    <p>Keterangan</p>
+    <input type="text" class="form-control" name="keterangan">
+ </div>
 <div class="form-group">
  <div class="text-right">
    <input class="btn btn-primary" type="submit" name="submit" value="Simpan">
@@ -84,7 +88,7 @@
 
 </form>
 <!-- end form login -->
-                
+
             </div>
             </div>
 

@@ -24,9 +24,8 @@
                             <th>Kode Sppd</th>
                             <th>Nama Karyawan</th>
                             <th>Anggaran</th>
-                            <th>Kegiatan</th>
                             <th>Tujuan</th>
-                            <th>Transportasi</th>
+                            <th>Kegiatan</th>
                             <th>Action</th>
                           </tr>
                         </thead>
@@ -36,9 +35,8 @@
                             <th>Kode Sppd</th>
                             <th>Nama Karyawan</th>
                             <th>Anggaran</th>
-                            <th>Kegiatan</th>
                             <th>Tujuan</th>
-                            <th>Transportasi</th>
+                            <th>Kegiatan</th>
                             <th>Action</th>
                           </tr>
                         </tfoot>
@@ -52,10 +50,8 @@
                             <td>{{ $p->kode_sppd }}</td>
                             <td>{{ $p->karyawan->nama }}</td>
                             <td>{{ $p->anggaran->pembebanan }}</td>
-                            <td>{{ $p->kegiatan->kegiatan }}</td>
                             <td>{{ $p->tujuan->tujuan }}</td>
                             <td>{{ $p->kegiatan->kegiatan }}</td>
-                            <td>{{ $p->transportasi->transportasi }}</td>
                                 <td class="text-center">
                                     <a href="" class="btn btn-sm btn-primary " >Info</a>
                                     <a href="{{route('sppd_edit', ['id' => IDCrypt::Encrypt( $p->id)])}}" class="btn btn-sm btn-info " >Edit</a>
