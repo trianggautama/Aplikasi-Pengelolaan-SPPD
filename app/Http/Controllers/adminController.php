@@ -348,7 +348,7 @@ class adminController extends Controller
             $Provinsi=Provinsi::findOrFail($id);
             $Provinsi->delete();
             return redirect(route('provinsi_index'))->with('success', 'Data  Berhasil di Hapus');
-       
+
     }  //menghapus data Provinsi
 
     //kabupaten
@@ -403,7 +403,7 @@ class adminController extends Controller
             $Kabupaten=Kabupaten::findOrFail($id);
             $Kabupaten->delete();
             return redirect(route('kabupaten_index'))->with('success', 'Data  Berhasil di Hapus');
-       
+
     }  //menghapus data Kabupaten
 
     //kecamatan
@@ -490,7 +490,7 @@ class adminController extends Controller
         $Kelurahan->kecamatan_id= $request->kecamatan_id;
 
         $Kelurahan->save();
-        
+
           return redirect(route('kelurahan_index'))->with('sukses', 'Data kelurahan '.$request->kelurahan.' Berhasil di Tambahkan');
       }//menambah data kelurahan
 
@@ -597,7 +597,7 @@ class adminController extends Controller
         $Tujuan->kelurahan_id= $request->kelurahan_id;
 
         $Tujuan->save();
-        
+
           return redirect(route('tujuan_index'))->with('sukses', 'Data tujuan '.$request->tujuan.' Berhasil di Tambahkan');
       }//menambah data tujuan
 
@@ -663,7 +663,7 @@ class adminController extends Controller
         $Transportasi->transportasi= $request->transportasi;
 
         $Transportasi->save();
-        
+
           return redirect(route('transportasi_index'))->with('sukses', 'Data transportasi '.$request->transportasi.' Berhasil di Tambahkan');
       }//menambah data transportasi
 
@@ -721,7 +721,7 @@ class adminController extends Controller
         $Pejabat->jabatan= $request->jabatan;
 
         $Pejabat->save();
-        
+
           return redirect(route('pejabat_index'))->with('sukses', 'Data pejabat '.$request->pejabat.' Berhasil di Tambahkan');
       }//menambah data pejabat
 
@@ -760,24 +760,24 @@ class adminController extends Controller
 
     //sppd
     public function sppd_index(){
-        
+
         $Sppd = Sppd::all();
-        $Pangkat = Pangkat::all();
-        $Jabatan = Jabatan::all();
+        // $Pangkat = Pangkat::all();
+        // $Jabatan = Jabatan::all();
         $Karyawan = Karyawan::all();
         $Anggaran = Anggaran::all();
         $Kegiatan = Kegiatan::all();
-        $Provinsi = Provinsi::all();
-        $Kabupaten = Kabupaten::all();
-        $Kecamatan = Kecamatan::all();
-        $Kelurahan = Kelurahan::all();
+        // $Provinsi = Provinsi::all();
+        // $Kabupaten = Kabupaten::all();
+        // $Kecamatan = Kecamatan::all();
+        // $Kelurahan = Kelurahan::all();
         $Tujuan = Tujuan::all();
         $Transportasi = Transportasi::all();
         $Pejabat = Pejabat::all();
-        
 
-        
-        return view('admin.sppd_data',compact('Sppd','Pangkat','Jabatan','Karyawan','Anggaran','Kegiatan','Provinsi','Kabupaten','Kecamatan','Kelurahan','Tujuan','Transportasi','Pejabat'));
+
+        return view('admin.sppd_data',compact('Sppd','Karyawan','Anggaran','Kegiatan','Tujuan','Transportasi','Pejabat'));
+        // return view('admin.sppd_data',compact('Sppd','Pangkat','Jabatan','Karyawan','Anggaran','Kegiatan','Provinsi','Kabupaten','Kecamatan','Kelurahan','Tujuan','Transportasi','Pejabat'));
     }//menampilkan data sppd
 
 
@@ -785,35 +785,42 @@ class adminController extends Controller
 
         $this->validate(request(),[
           'kode_sppd'=>'required|unique:sppds',
-          'sppd'=>'required|unique:sppds',
-          'kecamatan_id'=>'required'
+          'karyawan_id'=>'required',
+          'anggaran_id'=>'required',
+          'tujuan_id'=>'required',
+          'transportasi_id'=>'required',
+          'pejabat_id'=>'required',
 
         ]);
 
-        
+
         $Sppd = new Sppd;
         $Sppd->kode_sppd= $request->kode_sppd;
-        $Sppd->sppd= $request->sppd;
-        $Sppd->kecamatan_id= $request->kecamatan_id;
+        $Sppd->karyawan_id= $request->karyawan_id;
+        $Sppd->anggaran_id= $request->anggaran_id;
+        $Sppd->kegiatan_id= $request->kegiatan_id;
+        $Sppd->tujuan_id= $request->tujuan_id;
+        $Sppd->transportasi_id= $request->transportasi_id;
+        $Sppd->pejabat_id= $request->pejabat_id;
 
         $Sppd->save();
-        
-          return redirect(route('sppd_index'))->with('sukses', 'Data sppd '.$request->sppd.' Berhasil di Tambahkan');
+
+          return redirect(route('sppd_index'))->with('sukses', 'Data sppd '.$request->kode_sppd.' Berhasil di Tambahkan');
       }//menambah data sppd
 
       public function sppd_edit($id){
         $id = IDCrypt::Decrypt($id);
-        
+
         $Sppd = Sppd::findOrFail($id);
         $Kecamatan = Kecamatan::all();
 
-        
+
         return view('admin.sppd_edit',compact('Sppd','Kecamatan'));
        }//menampikan halaman edit sppd
 
        public function sppd_update(Request $request, $id){
         $id = IDCrypt::Decrypt($id);
-        
+
         $Sppd = Sppd::findOrFail($id);
 
         $this->validate(request(),[
@@ -836,8 +843,8 @@ class adminController extends Controller
     } //menghapus data sppd
 
     public function sppd_cetak(){
-       
-        
+
+
         return view('laporan.sppd');
        }//mencetak  sppd
 

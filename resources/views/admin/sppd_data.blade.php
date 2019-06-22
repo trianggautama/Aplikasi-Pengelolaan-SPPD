@@ -47,7 +47,7 @@
                             <tr>
                                 @php
                                 $no=1;
-                                @endphp   
+                                @endphp
                             <td>{{ $no++ }}</td>
                             <td>{{ $p->kode_sppd }}</td>
                             <td>{{ $p->karyawan->nama }}</td>
@@ -63,7 +63,7 @@
 
                                 </td>
                             </tr>
-                    @endforeach    
+                    @endforeach
                         </tbody>
                       </table>
                     </div>
@@ -89,13 +89,50 @@
               <input type="text" name="kode_sppd"  class="form-control" placeholder="Kode Sppd"/>
             </div>
             <div class="form-group">
-                <input type="text" name="sppd"  class="form-control" placeholder="Sppd"/>
-            </div>
+                <p>Nama Karyawan</p>
+                <select class="form-control" name="karyawan_id">
+                  @foreach($Karyawan as $j)
+                  <option value="{{$j->id}}">{{ $j->nama}}</option>
+                  @endforeach
+                </select>
+             </div>
+             <div class="form-group">
+                <p>Beban Anggaran</p>
+                <select class="form-control" name="anggaran_id">
+                  @foreach($Anggaran as $j)
+                  <option value="{{$j->id}}">{{ $j->pembebanan}} - {{ $j->akun }}</option>
+                  @endforeach
+                </select>
+             </div>
+             <div class="form-group">
+                <p>Kegiatan</p>
+                <select class="form-control" name="kegiatan_id">
+                  @foreach($Kegiatan as $j)
+                  <option value="{{$j->id}}">{{ $j->kegiatan}}</option>
+                  @endforeach
+                </select>
+             </div>
+             <div class="form-group">
+                <p>Tujuan</p>
+                <select class="form-control" name="tujuan_id">
+                  @foreach($Tujuan as $j)
+                  <option value="{{$j->id}}">{{ $j->tujuan}}</option>
+                  @endforeach
+                </select>
+             </div>
             <div class="form-group">
-                <p>Kecamatan</p>
-                <select class="form-control" name="kecamatan_id">
-                  @foreach($Kecamatan as $j)
-                  <option value="{{$j->id}}">{{ $j->kecamatan}}</option>
+                <p>Jenis Transportasi</p>
+                <select class="form-control" name="transportasi_id">
+                  @foreach($Transportasi as $j)
+                  <option value="{{$j->id}}">{{ $j->transportasi}}</option>
+                  @endforeach
+                </select>
+             </div>
+             <div class="form-group">
+                <p>Pejabat Struktural</p>
+                <select class="form-control" name="pejabat_id">
+                  @foreach($Pejabat as $j)
+                  <option value="{{$j->id}}">{{ $j->nama}}</option>
                   @endforeach
                 </select>
              </div>
