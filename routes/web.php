@@ -180,8 +180,10 @@ Route::get('/pejabat/hapus/{id}','adminController@pejabat_hapus')
 //sppd
 Route::get('/sppd','adminController@sppd_index')
 ->name('sppd_index');
-Route::post('/sppd','adminController@sppd_tambah')
+Route::get('/sppd/tambah','adminController@sppd_tambah')
 ->name('sppd_tambah');
+Route::post('/sppd/tambah','adminController@sppd_store')
+->name('sppd_store');
 Route::get('/sppd/edit/{id}','adminController@sppd_edit')
 ->name('sppd_edit');
 Route::put('/sppd/edit/{id}','adminController@sppd_update')

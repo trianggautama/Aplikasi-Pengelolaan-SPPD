@@ -776,12 +776,24 @@ class adminController extends Controller
         $Pejabat = Pejabat::all();
 
 
-        return view('admin.sppd_data',compact('Sppd','Karyawan','Anggaran','Kegiatan','Tujuan','Transportasi','Pejabat'));
+        return view('admin.sppd_data',compact('Sppd'));
         // return view('admin.sppd_data',compact('Sppd','Pangkat','Jabatan','Karyawan','Anggaran','Kegiatan','Provinsi','Kabupaten','Kecamatan','Kelurahan','Tujuan','Transportasi','Pejabat'));
     }//menampilkan data sppd
 
+    public function sppd_tambah(){
+        $Karyawan = Karyawan::all();
+        $Anggaran = Anggaran::all();
+        $Kegiatan = Kegiatan::all();
+        $Tujuan = Tujuan::all();
+        $Transportasi = Transportasi::all();
+        $Pejabat = Pejabat::all();
 
-    public function sppd_tambah(Request $request){
+        //dd($karyawan);
+        return view('admin.sppd_tambah',compact('Karyawan','Anggaran','Kegiatan','Tujuan','Transportasi','Pejabat'));
+        // return view('admin.sppd_data',compact('Sppd','Pangkat','Jabatan','Karyawan','Anggaran','Kegiatan','Provinsi','Kabupaten','Kecamatan','Kelurahan','Tujuan','Transportasi','Pejabat'));
+    }//menampilkan data sppd
+
+    public function sppd_store( Request $request ){
 
         $this->validate(request(),[
           'kode_sppd'=>'required|unique:sppds',
