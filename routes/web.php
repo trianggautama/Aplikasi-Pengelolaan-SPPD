@@ -189,10 +189,14 @@ Route::put('/sppd/edit/{id}','adminController@sppd_update')
 ->name('sppd_update');
 Route::get('/sppd/hapus/{id}','adminController@sppd_hapus')
 ->name('sppd_hapus');
+Route::get('/sppd/laporan/sppd-keseluruhan','adminController@laporan_sppd_keseluruhan')
+->name('laporan-sppd-keseluruhan');
 Route::get('/cetak_sppd','adminController@sppd_cetak')
 ->name('sppd_cetak');
 Route::get('/sppd_filter_lokasi','adminController@sppd_filter_lokasi')
 ->name('sppd_filter_lokasi');
+Route::post('/sppd_filter_lokasi','adminController@laporan_sppd_tujuan')
+->name('laporan_sppd_tujuan');
 Route::get('/sppd_filter_waktu','adminController@sppd_filter_waktu')
 ->name('sppd_filter_waktu');
 
