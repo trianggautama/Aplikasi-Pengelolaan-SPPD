@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use PDF;
 use IDCrypt;
 Use App\User;
 Use App\Sppd;
@@ -17,6 +18,8 @@ Use App\Kelurahan;
 Use App\Tujuan;
 Use App\Transportasi;
 Use App\Pejabat;
+
+use Carbon\Carbon;
 
 use Illuminate\Http\Request;
 
@@ -858,16 +861,38 @@ class adminController extends Controller
         return redirect(route('sppd_index'))->with('hapus', 'Data Berhasil di Hapus');
     } //menghapus data sppd
 
-    public function sppd_cetak(){
+    public function laporan_sppd_keseluruhan(){
+        $sppd=sppd::all();
+        $pejabat =pejabat::where('jabatan','Kepala Dinas')->get();
 
+        $tgl= Carbon::now()->format('d-m-Y');
 
-        return view('laporan.sppd');
+        $pdf =PDF::loadView('laporan.sppd_keseluruhan', ['sppd' => $sppd,'tgl'=>$tgl,'pejabat'=>$pejabat]);
+        $pdf->setPaper('a4', 'potrait');
+        return $pdf->stream('Laporan SPPD Keseluruhan.pdf');
        }//mencetak  sppd
 
     public function sppd_filter_lokasi(){
         $Tujuan = Tujuan::all();
     return view('admin.sppd_filter_lokasi',compact('Tujuan'));
     }//mencetak  sppd
+
+    public function laporan_sppd_tujuan(Request $Request){
+
+        $id = $Request->tujuan_id;
+
+        $tujuan =tujuan::findOrFail($id);
+
+        $sppd = sppd::where('tujuan_id', $id)->get();
+        // dd($sppd);
+        $pejabat =pejabat::where('jabatan','Kepala Dinas')->get();
+        $tgl= Carbon::now()->format('d-m-Y');
+
+        $pdf =PDF::loadView('laporan.sppd_tujuan', ['tujuan' => $tujuan,'sppd' => $sppd,'tgl'=>$tgl,'pejabat'=>$pejabat]);
+        $pdf->setPaper('a4', 'potrait');
+        return $pdf->stream('Laporan SPPD Tujuan.pdf');
+    }
+
 
     public function sppd_filter_waktu(){
     return view('admin.sppd_filter_waktu');
