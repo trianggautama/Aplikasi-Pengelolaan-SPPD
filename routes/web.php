@@ -148,9 +148,6 @@ Route::get('/kelurahan/hapus/{id}','adminController@kelurahan_hapus')
 //tujuan
 Route::get('/tujuan','adminController@tujuan_index')
 ->name('tujuan_index');
-Route::get('get-kabupaten-list','adminController@getKabupatenList');
-Route::get('get-kecamatan-list','adminController@getKecamatanList');
-Route::get('get-kelurahan-list','adminController@getKelurahanList');
 Route::post('/tujuan','adminController@tujuan_tambah')
 ->name('tujuan_tambah');
 Route::get('/tujuan/edit/{id}','adminController@tujuan_edit')
@@ -159,14 +156,16 @@ Route::put('/tujuan/edit/{id}','adminController@tujuan_update')
 ->name('tujuan_update');
 Route::get('/tujuan/hapus/{id}','adminController@tujuan_hapus')
 ->name('tujuan_hapus');
+
+//get request id from js
+Route::get('get-kabupaten-list','adminController@getKabupatenList');
+Route::get('get-kecamatan-list','adminController@getKecamatanList');
+Route::get('get-kelurahan-list','adminController@getKelurahanList');
 // });
 
 //pejabat
 Route::get('/pejabat','adminController@pejabat_index')
 ->name('pejabat_index');
-Route::get('get-kabupaten-list','adminController@getKabupatenList');
-Route::get('get-kecamatan-list','adminController@getKecamatanList');
-Route::get('get-kelurahan-list','adminController@getKelurahanList');
 Route::post('/pejabat','adminController@pejabat_tambah')
 ->name('pejabat_tambah');
 Route::get('/pejabat/edit/{id}','adminController@pejabat_edit')
