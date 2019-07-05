@@ -5,6 +5,8 @@ namespace App\Providers;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 
+use Carbon\Carbon;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -14,7 +16,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        setlocale(LC_ALL, 'id');
+        Carbon::setLocale('id');
+        // setlocale(LC_ALL, 'id_ID.utf8');
+        // Carbon::setLocale('id_ID.utf8');
     }
 
     /**
