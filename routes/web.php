@@ -148,9 +148,6 @@ Route::get('/kelurahan/hapus/{id}','adminController@kelurahan_hapus')
 //tujuan
 Route::get('/tujuan','adminController@tujuan_index')
 ->name('tujuan_index');
-Route::get('get-kabupaten-list','adminController@getKabupatenList');
-Route::get('get-kecamatan-list','adminController@getKecamatanList');
-Route::get('get-kelurahan-list','adminController@getKelurahanList');
 Route::post('/tujuan','adminController@tujuan_tambah')
 ->name('tujuan_tambah');
 Route::get('/tujuan/edit/{id}','adminController@tujuan_edit')
@@ -159,14 +156,16 @@ Route::put('/tujuan/edit/{id}','adminController@tujuan_update')
 ->name('tujuan_update');
 Route::get('/tujuan/hapus/{id}','adminController@tujuan_hapus')
 ->name('tujuan_hapus');
+
+//get request id from js
+Route::get('get-kabupaten-list','adminController@getKabupatenList');
+Route::get('get-kecamatan-list','adminController@getKecamatanList');
+Route::get('get-kelurahan-list','adminController@getKelurahanList');
 // });
 
 //pejabat
 Route::get('/pejabat','adminController@pejabat_index')
 ->name('pejabat_index');
-Route::get('get-kabupaten-list','adminController@getKabupatenList');
-Route::get('get-kecamatan-list','adminController@getKecamatanList');
-Route::get('get-kelurahan-list','adminController@getKelurahanList');
 Route::post('/pejabat','adminController@pejabat_tambah')
 ->name('pejabat_tambah');
 Route::get('/pejabat/edit/{id}','adminController@pejabat_edit')
@@ -190,12 +189,20 @@ Route::put('/sppd/edit/{id}','adminController@sppd_update')
 ->name('sppd_update');
 Route::get('/sppd/hapus/{id}','adminController@sppd_hapus')
 ->name('sppd_hapus');
+Route::get('/sppd/laporan/sppd-keseluruhan','adminController@laporan_sppd_keseluruhan')
+->name('laporan-sppd-keseluruhan');
 Route::get('/cetak_sppd','adminController@sppd_cetak')
 ->name('sppd_cetak');
 Route::get('/sppd_filter_lokasi','adminController@sppd_filter_lokasi')
 ->name('sppd_filter_lokasi');
+Route::post('/sppd_filter_lokasi','adminController@laporan_sppd_tujuan')
+->name('laporan_sppd_tujuan');
 Route::get('/sppd_filter_waktu','adminController@sppd_filter_waktu')
 ->name('sppd_filter_waktu');
+Route::post('/sppd_filter_waktu','adminController@laporan_sppd_waktu')
+->name('laporan_sppd_waktu');
+Route::get('/sppd/laporan/sppd/{id}','adminController@laporan_sppd')
+->name('laporan-sppd');
 
 Auth::routes();
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use PDF;
 use IDCrypt;
 Use App\User;
 Use App\Sppd;
@@ -17,6 +18,9 @@ Use App\Kelurahan;
 Use App\Tujuan;
 Use App\Transportasi;
 Use App\Pejabat;
+
+use DateTime;
+use Carbon\Carbon;
 
 use Illuminate\Http\Request;
 
@@ -858,10 +862,15 @@ class adminController extends Controller
         return redirect(route('sppd_index'))->with('hapus', 'Data Berhasil di Hapus');
     } //menghapus data sppd
 
-    public function sppd_cetak(){
+    public function laporan_sppd_keseluruhan(){
+        $sppd=sppd::all();
+        $pejabat =pejabat::where('jabatan','Kepala Dinas')->get();
 
+        $tgl= Carbon::now()->format('d-m-Y');
 
-        return view('laporan.sppd');
+        $pdf =PDF::loadView('laporan.sppd_keseluruhan', ['sppd' => $sppd,'tgl'=>$tgl,'pejabat'=>$pejabat]);
+        $pdf->setPaper('a4', 'potrait');
+        return $pdf->stream('Laporan SPPD Keseluruhan.pdf');
        }//mencetak  sppd
 
     public function sppd_filter_lokasi(){
@@ -869,8 +878,61 @@ class adminController extends Controller
     return view('admin.sppd_filter_lokasi',compact('Tujuan'));
     }//mencetak  sppd
 
+    public function laporan_sppd_tujuan(Request $Request){
+
+        $id = $Request->tujuan_id;
+
+        $tujuan =tujuan::findOrFail($id);
+
+        $sppd = sppd::where('tujuan_id', $id)->get();
+        // dd($sppd);
+        $pejabat =pejabat::where('jabatan','Kepala Dinas')->get();
+        $tgl= Carbon::now()->format('d-m-Y');
+
+        $pdf =PDF::loadView('laporan.sppd_tujuan', ['tujuan' => $tujuan,'sppd' => $sppd,'tgl'=>$tgl,'pejabat'=>$pejabat]);
+        $pdf->setPaper('a4', 'potrait');
+        return $pdf->stream('Laporan SPPD Tujuan.pdf');
+    }
+
+
     public function sppd_filter_waktu(){
     return view('admin.sppd_filter_waktu');
     }//mencetak  sppd
+
+    public function laporan_sppd_waktu(Request $Request){
+
+        $id = carbon::parse($Request->tgl_berangkat);
+        $bulan = carbon::parse($Request->tgl_berangkat)->format('F');
+        // $bulan = $Request->tgl_berangkat;
+        $sppd =sppd::whereMonth('tgl_berangkat',$id)->get();
+        $pejabat =pejabat::where('jabatan','Kepala Dinas')->get();
+        $tgl= Carbon::now()->format('d-m-Y');
+
+        $pdf =PDF::loadView('laporan.sppd_waktu', ['id'=> $id,'bulan'=> $bulan,'sppd' => $sppd,'tgl'=>$tgl,'pejabat'=>$pejabat]);
+        $pdf->setPaper('a4', 'potrait');
+        return $pdf->stream('Laporan SPPD Waktu.pdf');
+    }
+
+    public function laporan_sppd($id){
+        $id = IDCrypt::Decrypt($id);
+        $sppd=sppd::findOrFail($id);
+        // dd($sppd);
+        $pejabat =pejabat::where('jabatan','Kepala Dinas')->get();
+
+        $tgl= Carbon::now()->format('d-m-Y');
+
+        $tgl_b = $sppd->tgl_berangkat;
+        $tgl_k = $sppd->tgl_kembali;
+        // dd($tgl_b);
+        $datetime1 = new DateTime($tgl_b);
+        $datetime2 = new DateTime($tgl_k);
+        $interval = $datetime1->diff($datetime2);
+        $lama_perjalanan = $interval->format('%a');//now do whatever you like with $lama_perjalanan
+        // dd($lama_perjalanan);
+
+        $pdf =PDF::loadView('laporan.sppd', ['sppd' => $sppd,'tgl'=>$tgl,'pejabat'=>$pejabat,'lama_perjalanan'=>$lama_perjalanan]);
+        $pdf->setPaper('F4', 'potrait');
+        return $pdf->stream('Laporan SPPD.pdf');
+       }//mencetak  sppd
 
 }
