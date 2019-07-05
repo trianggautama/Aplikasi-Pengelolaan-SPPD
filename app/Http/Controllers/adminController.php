@@ -931,7 +931,7 @@ class adminController extends Controller
         // dd($lama_perjalanan);
 
         $pdf =PDF::loadView('laporan.sppd', ['sppd' => $sppd,'tgl'=>$tgl,'pejabat'=>$pejabat,'lama_perjalanan'=>$lama_perjalanan]);
-        $pdf->setPaper('F4', 'potrait');
+        $pdf->setPaper('Legal', 'potrait');
         return $pdf->stream('Laporan SPPD.pdf');
        }//mencetak  sppd
 

@@ -8,34 +8,50 @@
 </head>
 <body>
     <style>
-         hr{
-            height: 2px;
-            background-color: black;
-            width: 100%;
-        }
-
-        .logo{
-            width: 18%;
-            float: left;
-            text-align :center;
-            padding-top:10px;
-
-        }
-        .text-header{
-            width:82%;
-            float:right;
-            text-align :center;
-        }
+    body{
+        margin:20px;
+    }
+      .judul{
+         text-align: center;
+     }
+     .header{
+         margin-bottom: 0px;
+         text-align: center;
+         height: 150px;
+         padding: 0px;
+     }
+     .pemko{
+         width:80px;
+     }
+     .logo{
+         float: left;
+         margin-right: 0px;
+         width: 15%;
+         padding:0px;
+         text-align: right;
+     }
+     .headtext{
+         float:right;
+         margin-left: 0px;
+         width: 70%;
+         padding-left:0px;
+         padding-right:10%;
+     }
+     hr{
+         margin-top: 10%;
+         height: 3px;
+         background-color: black;
+         width:100%;
+     }
 
         .nomor-surat{
-            width:30%;
-            float:right;
+            width:100%;
+            text-align:right;
             
         }
         .title{
             width: 100%;
             text-align: center;
-            float:right;
             padding:0px !important;
             margin:0px !important;
 
@@ -54,38 +70,37 @@
             width: fixed;
         }
 
-        .footer{
-            width: 50%;
-            float:right;
-            margin-bottom:200px;
-
-        }
+        .ttd{
+         margin-left:60%;
+         text-align: center;
+     }
         .header2{
-            width: 50%;
-            float:right;
+            margin-left:60%;
+         text-align: center;
             padding-left:30px;
         }
     </style>
-
-    <section class="header">
-        <div class="logo">
-            <img src="images/logo-kabupaten.jpg" width="90px">
-        </div>
-        <div class="text-header">
-            <h1 style="margin-bottom:8px !important;"> PEMERINTAH KABUPATEN TAPIN</h1>
-            <h4 style="margin-top:0px !important;">DINAS PENDIDIKAN</h4>
-            <p>Jl.Brigjend H.Hasan Baseri Km. 2  (0517) 31040 Fax. 31046 Rantau</p>
-        </div>
-        <hr>
-    </section>
+        <div class="header">
+            <div class="logo">
+                    <img  class="pemko" src="images/logo-kabupaten.jpg"  >
+            </div>
+            <div class="headtext">
+                <h3 style="margin:0px;">KFC WILAYAH </h3>
+                <h1 style="margin:0px;">KALIMANTAN SELATAN</h1>
+                <p style="margin:0px;">Alamat : jl.lambung mangkurat no.19 kertak baru ilir ,kec.Banjarmasin tengah,kota Banjarmasin,kalimantan selatan 70111</p>
+            </div>
+            <br>
+            <hr>
+    </div>
     <section class="nomor-surat">
         <p>Nomor : 090 /   &nbsp;  &nbsp;  / PD-2019</p>
     </section>
     <section class="title">
         <h1 style="margin:0px; margin-bottom:5px !important;">SURAT PERINTAH PERJALANAN DINAS</h1>
      </section>
+   
      <section>
-        <table style="margin-bottom:20px;">
+        <table style="margin-bottom:20px; ">
             <tr>
                 <td style="padding-left:5px;">
                     <p>01.Pejabat berwenang yang memberi perintah</p>
@@ -186,27 +201,27 @@
                 </td>
             </tr>
         </table>
-        <div class="footer">
-            <h5 style="margin:2px;"> Dikeluarkan  di &nbsp;	:	Rantau  </h5>
+        </section>
+        <div class="ttd">
+        <h5 style="margin:2px;"> Dikeluarkan  di &nbsp;	:	Rantau  </h5>
             <h5 style="margin:2px;">Pada Tanggal &nbsp; &nbsp;	:	27 April 2015</h5>
             <hr>
             <h5 style="margin:2px; text-align: center"> An. Bupati Tapin </h5>
             <h5 style="margin:2px; text-align: center">Kepala Dinas Pendidikan Kabupaten Tapin,</h5>
             <br>
             <br>
-            <br>
             <h5 style="margin:2px; text-align: center"> Drs. H. JUWAINI, M.Pd </h5>
             <h5 style="margin:2px; text-align: center"> Pembina Utama Muda</h5>
             <h5 style="margin:2px; text-align: center"> NIP . 19600801 198710 1 003</h5>
         </div>
-     </section>
-     <section class="header2">
+        <br>
+        <br>
+        <section class="header2">
         <h5 style="margin:2px; ">I. Berangkat dari  &nbsp;	:Disdik Tapin</h5>
         <h5 style="margin:2px; margin-left:15px;">(Tempat kedudukan)	&nbsp; :Rantau</h5>
         <h5 style="margin:2px; margin-left:15px;">Pada tanggal &nbsp;	:28 April 2015</h5>
         <h5 style="margin:2px; margin-left:15px;">Ke &nbsp;	:Banjarmasin</h5>
-
-        <hr>
+        <hr style="margin:2px; height:1px;">
         <h5 style="margin:2px; margin-left:15px;"> An. Bupati Tapin </h5>
         <h5 style="margin:2px; margin-left:15px;"> Kepala Dinas Pendidikan Kabupaten Tapin,</h5>
         <br>
@@ -299,6 +314,5 @@
             </tr>
         </table>
      </section>
-    
 </body>
 </html>
