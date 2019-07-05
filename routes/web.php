@@ -199,6 +199,10 @@ Route::post('/sppd_filter_lokasi','adminController@laporan_sppd_tujuan')
 ->name('laporan_sppd_tujuan');
 Route::get('/sppd_filter_waktu','adminController@sppd_filter_waktu')
 ->name('sppd_filter_waktu');
+Route::post('/sppd_filter_waktu','adminController@laporan_sppd_waktu')
+->name('laporan_sppd_waktu');
+Route::get('/sppd/laporan/sppd/{id}','adminController@laporan_sppd')
+->name('laporan-sppd');
 
 Auth::routes();
 
