@@ -19,6 +19,7 @@ Use App\Tujuan;
 Use App\Transportasi;
 Use App\Pejabat;
 
+use DateTime;
 use Carbon\Carbon;
 
 use Illuminate\Http\Request;
@@ -897,5 +898,41 @@ class adminController extends Controller
     public function sppd_filter_waktu(){
     return view('admin.sppd_filter_waktu');
     }//mencetak  sppd
+
+    public function laporan_sppd_waktu(Request $Request){
+
+        $id = carbon::parse($Request->tgl_berangkat);
+        $bulan = carbon::parse($Request->tgl_berangkat)->format('F');
+        // $bulan = $Request->tgl_berangkat;
+        $sppd =sppd::whereMonth('tgl_berangkat',$id)->get();
+        $pejabat =pejabat::where('jabatan','Kepala Dinas')->get();
+        $tgl= Carbon::now()->format('d-m-Y');
+
+        $pdf =PDF::loadView('laporan.sppd_waktu', ['id'=> $id,'bulan'=> $bulan,'sppd' => $sppd,'tgl'=>$tgl,'pejabat'=>$pejabat]);
+        $pdf->setPaper('a4', 'potrait');
+        return $pdf->stream('Laporan SPPD Waktu.pdf');
+    }
+
+    public function laporan_sppd($id){
+        $id = IDCrypt::Decrypt($id);
+        $sppd=sppd::findOrFail($id);
+        // dd($sppd);
+        $pejabat =pejabat::where('jabatan','Kepala Dinas')->get();
+
+        $tgl= Carbon::now()->format('d-m-Y');
+
+        $tgl_b = $sppd->tgl_berangkat;
+        $tgl_k = $sppd->tgl_kembali;
+        // dd($tgl_b);
+        $datetime1 = new DateTime($tgl_b);
+        $datetime2 = new DateTime($tgl_k);
+        $interval = $datetime1->diff($datetime2);
+        $lama_perjalanan = $interval->format('%a');//now do whatever you like with $lama_perjalanan
+        // dd($lama_perjalanan);
+
+        $pdf =PDF::loadView('laporan.sppd', ['sppd' => $sppd,'tgl'=>$tgl,'pejabat'=>$pejabat,'lama_perjalanan'=>$lama_perjalanan]);
+        $pdf->setPaper('F4', 'potrait');
+        return $pdf->stream('Laporan SPPD.pdf');
+       }//mencetak  sppd
 
 }
