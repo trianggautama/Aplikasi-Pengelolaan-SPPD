@@ -58,7 +58,7 @@
                                 <td>{{ $p->tujuan->tujuan }}</td>
                                 <td>{{ $p->kegiatan->kegiatan }}</td>
                                 <td class="text-center">
-                                    <a href="" class="btn btn-sm btn-primary ">Info</a>
+                                    <a href="{{route('laporan-sppd', ['id' => IDCrypt::Encrypt( $p->id)])}}" class="btn btn-sm btn-primary ">Cetak SPPD</a>
                                     <a href="{{route('sppd_edit', ['id' => IDCrypt::Encrypt( $p->id)])}}"
                                         class="btn btn-sm btn-info ">Edit</a>
                                     <a href="{{route('sppd_hapus', ['id' => IDCrypt::Encrypt( $p->id)])}}"
