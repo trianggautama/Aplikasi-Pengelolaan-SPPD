@@ -11,7 +11,7 @@
                 <div class="card-body">
                     <form method="post" action="">
                         <div class="form-group">
-                           <input class="form-control" type="date" name="tgl_berangkat">
+                           <input class="form control" type="date" name="tgl_berangkat">
                         </div>
                         <div class="form-group">
                             <div class="text-right">

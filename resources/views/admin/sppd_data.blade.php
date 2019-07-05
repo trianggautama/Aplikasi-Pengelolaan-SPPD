@@ -21,6 +21,8 @@
                 <h6 class="m-0 font-weight-bold text-primary">Data Sppd</h6>
             </div>
             <div class="card-body">
+            @include('layouts.alert_ubah')
+            @include('layouts.alert_hapus')
                 <div class="table-responsive">
                     <table class="table table-bordered" id="myTable" width="100%" cellspacing="0">
                         <thead>
