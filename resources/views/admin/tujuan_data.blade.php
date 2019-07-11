@@ -15,7 +15,7 @@
                 <!-- DataTales Example -->
                 <div class="card shadow mb-4">
                   <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Data Karyawan</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Data Tempat/Tujuan</h6>
                   </div>
                   <div class="card-body">
                 @include('layouts.alert_sukses')
@@ -66,7 +66,7 @@
                                     <a href="{{route('tujuan_edit', ['id' => IDCrypt::Encrypt( $p->id)])}}" class="btn btn-sm btn-info " >Edit</a>
                                         <a href="{{route('tujuan_hapus', ['id' => IDCrypt::Encrypt( $p->id)])}}" class="btn btn-sm btn-danger" >Hapus</a>
                                     </td>
-                                    
+
                                 </tr>
                         @endforeach
                         </tbody>
@@ -172,22 +172,22 @@
             });
         });
 </script>         --}}
-        
+
 <script type="text/javascript">
     $('#provinsi').change(function(){
-    var provinsiID = $(this).val();    
+    var provinsiID = $(this).val();
     if(provinsiID){
         $.ajax({
            type:"GET",
            url:"{{url('get-kabupaten-list')}}?provinsi_id="+provinsiID,
-           success:function(res){               
+           success:function(res){
             if(res){
                 $("#kabupaten").empty();
                 $("#kabupaten").append('<option>Pilih Kabupaten</option>');
                 $.each(res,function(key,value){
                     $("#kabupaten").append('<option value="'+key+'">'+value+'</option>');
                 });
-           
+
             }else{
                $("#kabupaten").empty();
             }
@@ -197,22 +197,22 @@
         $("#kabupaten").empty();
         $("#kecamatan").empty();
         $("#kelurahan").empty();
-    }      
+    }
    });
     $('#kabupaten').on('change',function(){
-    var kabupatenID = $(this).val();    
+    var kabupatenID = $(this).val();
     if(kabupatenID){
         $.ajax({
            type:"GET",
            url:"{{url('get-kecamatan-list')}}?kabupaten_id="+kabupatenID,
-           success:function(res){               
+           success:function(res){
             if(res){
                 $("#kecamatan").empty();
                 $("#kecamatan").append('<option>Pilih Kecamatan</option>');
                 $.each(res,function(key,value){
                     $("#kecamatan").append('<option value="'+key+'">'+value+'</option>');
                 });
-           
+
             }else{
                $("#kecamatan").empty();
             }
@@ -222,22 +222,22 @@
         $("#kecamatan").empty();
         $("#kelurahan").empty();
     }
-        
+
    });
    $('#kecamatan').on('change',function(){
-    var kecamatanID = $(this).val();    
+    var kecamatanID = $(this).val();
     if(kecamatanID){
         $.ajax({
            type:"GET",
            url:"{{url('get-kelurahan-list')}}?kecamatan_id="+kecamatanID,
-           success:function(res){               
+           success:function(res){
             if(res){
                 $("#kelurahan").empty();
                 $("#kelurahan").append('<option>Pilih Kelurahan</option>');
                 $.each(res,function(key,value){
                     $("#kelurahan").append('<option value="'+key+'">'+value+'</option>');
                 });
-           
+
             }else{
                $("#kelurahan").empty();
             }
@@ -246,7 +246,7 @@
     }else{
         $("#kelurahan").empty();
     }
-        
+
    });
 </script>         --}}
 
