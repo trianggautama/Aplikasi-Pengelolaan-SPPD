@@ -33,6 +33,20 @@ Route::put('/pegawai/edit/{id}','adminController@pegawai_update')
 Route::get('/pegawai/hapus/{id}','adminController@pegawai_hapus')
 ->name('pegawai_hapus');
 
+//Laporan Pegawai
+Route::get('/pegawai/laporan/pegawai-keseluruhan','adminController@laporan_pegawai_keseluruhan')
+->name('laporan-pegawai-keseluruhan');
+Route::get('/pegawai_filter_pangkat','adminController@pegawai_filter_pangkat')
+->name('pegawai_filter_pangkat');
+Route::post('/pegawai_filter_pangkat','adminController@laporan_pegawai_pangkat')
+->name('laporan_pegawai_pangkat');
+Route::get('/pegawai_filter_jabatan','adminController@pegawai_filter_jabatan')
+->name('pegawai_filter_jabatan');
+Route::post('/pegawai_filter_jabatan','adminController@laporan_pegawai_jabatan')
+->name('laporan_pegawai_jabatan');
+Route::get('/pegawai/laporan/pegawai/{id}','adminController@laporan_pegawai')
+->name('laporan-pegawai');
+
 //Jabatan
 Route::get('/jabatan','adminController@jabatan_index')
 ->name('jabatan_index');
