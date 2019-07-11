@@ -862,6 +862,59 @@ class adminController extends Controller
         return redirect(route('sppd_index'))->with('hapus', 'Data Berhasil di Hapus');
     } //menghapus data sppd
 
+    public function laporan_pegawai_keseluruhan(){
+        $pegawai=karyawan::all();
+        $pejabat =pejabat::where('jabatan','Kepala Dinas')->get();
+
+        $tgl= Carbon::now()->format('d-m-Y');
+
+        $pdf =PDF::loadView('laporan.pegawai_keseluruhan', ['pegawai' => $pegawai,'tgl'=>$tgl,'pejabat'=>$pejabat]);
+        $pdf->setPaper('a4', 'potrait');
+        return $pdf->stream('Laporan Pegawai Keseluruhan.pdf');
+       }//mencetak  pegawai
+
+    public function pegawai_filter_pangkat(){
+        $pangkat = pangkat::all();
+    return view('admin.pegawai_filter_pangkat',compact('pangkat'));
+    }//mencetak  pegawai
+
+    public function laporan_pegawai_pangkat(Request $Request){
+
+        $id = $Request->pangkat_id;
+
+        $pangkat =pangkat::findOrFail($id);
+
+        $pegawai = karyawan::where('pangkat_id', $id)->get();
+        // dd($pegawai);
+        $pejabat =pejabat::where('jabatan','Kepala Dinas')->get();
+        $tgl= Carbon::now()->format('d-m-Y');
+
+        $pdf =PDF::loadView('laporan.pegawai_pangkat', ['pangkat' => $pangkat,'pegawai' => $pegawai,'tgl'=>$tgl,'pejabat'=>$pejabat]);
+        $pdf->setPaper('a4', 'potrait');
+        return $pdf->stream('Laporan pegawai berdasarkan pangkat.pdf');
+    }
+
+    public function pegawai_filter_jabatan(){
+        $jabatan = jabatan::all();
+    return view('admin.pegawai_filter_jabatan',compact('jabatan'));
+    }//mencetak  pegawai
+
+    public function laporan_pegawai_jabatan(Request $Request){
+
+        $id = $Request->jabatan_id;
+
+        $jabatan =jabatan::findOrFail($id);
+
+        $pegawai = karyawan::where('jabatan_id', $id)->get();
+        // dd($pegawai);
+        $pejabat =pejabat::where('jabatan','Kepala Dinas')->get();
+        $tgl= Carbon::now()->format('d-m-Y');
+
+        $pdf =PDF::loadView('laporan.pegawai_jabatan', ['jabatan' => $jabatan,'pegawai' => $pegawai,'tgl'=>$tgl,'pejabat'=>$pejabat]);
+        $pdf->setPaper('a4', 'potrait');
+        return $pdf->stream('Laporan pegawai berdasarkan jabatan.pdf');
+    }
+
     public function laporan_sppd_keseluruhan(){
         $sppd=sppd::all();
         $pejabat =pejabat::where('jabatan','Kepala Dinas')->get();
@@ -919,10 +972,14 @@ class adminController extends Controller
         // dd($sppd);
         $pejabat =pejabat::where('jabatan','Kepala Dinas')->get();
 
-        $tgl= Carbon::now()->format('d-m-Y');
+        $tgl= Carbon::now()->format('d F Y');
+        $tahun= Carbon::now()->format('Y');
 
-        $tgl_b = $sppd->tgl_berangkat;
-        $tgl_k = $sppd->tgl_kembali;
+        // $tgl_b = $sppd->tgl_berangkat;
+        // $tgl_k = $sppd->tgl_kembali;
+
+        $tgl_b = carbon::parse($sppd->tgl_berangkat)->format('d F Y');
+        $tgl_k = carbon::parse($sppd->tgl_kembali)->format('d F Y');
         // dd($tgl_b);
         $datetime1 = new DateTime($tgl_b);
         $datetime2 = new DateTime($tgl_k);
@@ -930,7 +987,9 @@ class adminController extends Controller
         $lama_perjalanan = $interval->format('%a');//now do whatever you like with $lama_perjalanan
         // dd($lama_perjalanan);
 
-        $pdf =PDF::loadView('laporan.sppd', ['sppd' => $sppd,'tgl'=>$tgl,'pejabat'=>$pejabat,'lama_perjalanan'=>$lama_perjalanan]);
+
+
+        $pdf =PDF::loadView('laporan.sppd', ['sppd' => $sppd,'tgl'=>$tgl,'pejabat'=>$pejabat,'lama_perjalanan'=>$lama_perjalanan,'tgl_b'=>$tgl_b,'tgl_k'=>$tgl_k,'tahun'=>$tahun]);
         $pdf->setPaper('Legal', 'potrait');
         return $pdf->stream('Laporan SPPD.pdf');
        }//mencetak  sppd
