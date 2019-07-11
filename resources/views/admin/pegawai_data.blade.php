@@ -10,7 +10,14 @@
                 <h1 class="h3 mb-2 text-gray-800">Tables</h1>
                 <div class="text-right">
                         <a href="##tambahdata" data-toggle="modal"data-target="#tambahdata" class="btn btn-sm btn-success" style="margin-bottom:15px;"> + Tambah Data  </a>
-                        <a href=""  class="btn btn-sm btn-primary" style="margin-bottom:15px;"><i class="fas fa-print"></i> Cetak Data  </a>
+                        <a href="{{route('laporan-pegawai-keseluruhan')}}" class="btn btn-sm btn-primary" style="margin-bottom:15px;"><i class="fas fa-print"></i> Cetak Data
+                            Keseluruhan </a>
+                        <a href="{{Route('pegawai_filter_pangkat')}}"  class="btn btn-sm btn-primary"
+                            style="margin-bottom:15px;"><i class="fas fa-print"></i> Cetak Data Berdasarkan Pangkat/Golongan </a>
+                        <a href="{{Route('pegawai_filter_jabatan')}}" class="btn btn-sm btn-primary"
+                        style="margin-bottom:15px;"><i class="fas fa-print"></i> Cetak Data
+                        Berdasarkan Jabatan </a>
+                        <!-- DataTales Example -->
                     </div>
                 <!-- DataTales Example -->
                 <div class="card shadow mb-4">
@@ -60,7 +67,7 @@
                                     <a href="{{route('pegawai_edit', ['id' => IDCrypt::Encrypt( $p->id)])}}" class="btn btn-sm btn-info " >Edit</a>
                                         <a href="{{route('pegawai_hapus', ['id' => IDCrypt::Encrypt( $p->id)])}}" class="btn btn-sm btn-danger" >Hapus</a>
                                     </td>
-                                    
+
                                 </tr>
                         @endforeach
                         </tbody>
